@@ -143,5 +143,7 @@ namespace Rechner01
         /// // e.Key.toSTring();
         ///  methode zahl_click
         ///  https://stackoverflow.com/questions/7103360/how-to-get-pressed-char-from-system-windows-input-keyeventargs
+        ///  /*
+        ///   switch(e.Key)            {                case Key.D0: Berechne('0', null); break;                case Key.D1: Berechne('1', null); break;                case Key.D2: Berechne('2', null); break;                case Key.D3: Berechne('3', null); break;                case Key.D4: Berechne('4', null); break;                case Key.D5: Berechne('5', null); break;                case Key.D6: Berechne('6', null); break;                case Key.D7: Berechne('7', null); break;                case Key.D8: Berechne('8', null); break;                case Key.D9: Berechne('9', null); break;                case Key.NumPad0: Berechne('0', null); break;                case Key.NumPad1: Berechne('1', null); break;                case Key.NumPad2: Berechne('2', null); break;                case Key.NumPad3: Berechne('3', null); break;                case Key.NumPad4: Berechne('4', null); break;                case Key.NumPad5: Berechne('5', null); break;                case Key.NumPad6: Berechne('6', null); break; */
     }
 }
