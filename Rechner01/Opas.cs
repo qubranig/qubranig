@@ -10,7 +10,7 @@ namespace Rechner01
     {
         void Methode();// hallo hallo
         int x { get; set; }
-        public void Leeremthodeweilwireininterfacebenutzendiesachenmacht();
+        public void was_ist_was();
 
         string text { get; set; }
     }
