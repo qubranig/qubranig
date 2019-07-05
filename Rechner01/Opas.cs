@@ -8,9 +8,9 @@ namespace Rechner01
 {
     interface IOpas
     {
-        void Methode();// isch schreib mal irgendwas rein und dann post ich das
+        void Methode();// hallo hallo
         int x { get; set; }
-
+        string text { get; set; }
     }
     public static class opas2
     {
@@ -20,6 +20,7 @@ namespace Rechner01
             numbs.Zahl1 = numbs.Zahl1 - numbs.Zahl2;
             numbs.Zahl2 = 0;
 
+            int x = 0;
         }
     }
 

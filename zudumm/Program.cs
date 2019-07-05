@@ -10,7 +10,7 @@ namespace zudumm
     {
         static void Main(string[] args)
         {
-            Numbs dsad;
+            Console.WriteLine();
         }
     }
 }
