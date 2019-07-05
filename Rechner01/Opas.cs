@@ -8,7 +8,7 @@ namespace Rechner01
 {
     interface IOpas
     {
-        void Methode();// hallo hallo
+        void Methode();//test12ds
         int x { get; set; }
         string text { get; set; }
     }
