@@ -9,7 +9,7 @@ namespace Rechner01
     interface IOpas
     {
         void Methode();// isch schreib mal irgendwas rein und dann post ich das
-        int x=0;
+        int x { get; set; }
 
     }
     public static class opas2
