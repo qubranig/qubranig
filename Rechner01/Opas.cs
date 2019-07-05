@@ -11,7 +11,7 @@ namespace Rechner01
         void Methode();// hallo hallo
         int x { get; set; }
         public void was_ist_was();
-        public string hallo="welt!";
+        hääääääääääääääää
         string text { get; set; }
     }
     public static class opas2
