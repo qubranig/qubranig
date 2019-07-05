@@ -8,7 +8,8 @@ namespace Rechner01
 {
     interface IOpas
     {
-        void Methode();
+        void Methode();// isch schreib mal irgendwas rein und dann post ich das
+        int x=0;
 
     }
     public static class opas2
