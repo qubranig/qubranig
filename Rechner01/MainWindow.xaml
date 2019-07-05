@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Rechner01"
         mc:Ignorable="d"
-        Title="MainWindow" Height="672" Width="771.5" Background="Black" Key>
+        Title="MainWindow" Height="672" Width="771.5" Background="Black" >
     <Grid Margin="0,170,218,0">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="116*" />
@@ -22,7 +22,7 @@
             <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <Button Content="ce" Grid.Column="0" Grid.Row="0" FontSize="50" Click="Ce_Click_1" Ke/>
+        <Button Content="ce" Grid.Column="0" Grid.Row="0" FontSize="50" Click="Ce_Click_1" />
         <Button Content="c" Name="c" FontSize="50" Grid.Column="1" Grid.Row="0" />
         <Button Content="back" Name="back" FontSize="50" Grid.Column="2" Grid.Row="0"/>
         <Button Content="/" Name="geteilt" FontSize="50" Grid.Column="3" Grid.Row="0" Click="op_click"/>
