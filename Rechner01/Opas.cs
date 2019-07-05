@@ -10,6 +10,8 @@ namespace Rechner01
     {
         void Methode();// hallo hallo
         int x { get; set; }
+        public void Leeremthodeweilwireininterfacebenutzendiesachenmacht();
+
         string text { get; set; }
     }
     public static class opas2
