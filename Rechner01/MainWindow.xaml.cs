@@ -31,7 +31,7 @@ namespace Rechner01
 
         public MainWindow()
         {
-            Numbs unclever = new Numbs();
+            Numbs hmmm = new Numbs();
             InitializeComponent();
 
             hmmm.Zahl1 = 2;
