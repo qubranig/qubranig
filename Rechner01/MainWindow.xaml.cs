@@ -8,16 +8,17 @@ using System.Windows;
 
 namespace Rechner01
 {
-    class Numbs
-    {
+     public class Numbs
+     {
         public double Zahl1 { get; set; }
         public double Zahl2 { get; set; }
-
+        public List<double> listezahlen { get; set; }
         public double Ergebniss { get; set; }
 
         public string Operant { get; set; }
+        public List<string>listeoperanten { get; set; }
 
-    }
+     }
 
     public partial class MainWindow : Window
     {
@@ -86,7 +87,7 @@ namespace Rechner01
             operant = true;
             hmmm.Operant = Convert.ToString((sender as System.Windows.Controls.Button).Content);
             opzeichen.Text = hmmm.Operant.ToString();
-            
+            ergebnis();
             string stringspeicher = hmmm.Zahl1 + "\n" + hmmm.Zahl2 + "\n" + hmmm.Ergebniss;
             textboxspeicher.Text = stringspeicher;
         }
@@ -118,8 +119,9 @@ namespace Rechner01
             string stringspeicher = hmmm.Zahl1 + "\n" + hmmm.Zahl2 + "\n" + hmmm.Ergebniss;
             textboxspeicher.Text = stringspeicher;
         }
-        private void addition(Numbs numbs)
+      private void addition(Numbs numbs)
         {
+
             if (numbs.Zahl2 != 0)
             {
                 numbs.Ergebniss = numbs.Zahl1 + numbs.Zahl2;
@@ -127,10 +129,7 @@ namespace Rechner01
                 numbs.Zahl2 =0;
             }
         }
-        static void hallo(int r)
-        {
-           ////
-        }
+
         private void Ce_Click_1(object sender, RoutedEventArgs e)
         {
             textbox1.Clear();
@@ -140,6 +139,9 @@ namespace Rechner01
             hmmm.Operant = "";
         }
 
-    
+        /// event über window 
+        /// // e.Key.toSTring();
+        ///  methode zahl_click
+        ///  https://stackoverflow.com/questions/7103360/how-to-get-pressed-char-from-system-windows-input-keyeventargs
     }
 }

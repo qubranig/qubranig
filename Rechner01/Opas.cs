@@ -11,12 +11,14 @@ namespace Rechner01
 
 
     }
-    static class opas2
+    public static class opas2
     {
         static public void methodetest(Numbs numbs)
         {
             numbs.Ergebniss = numbs.Zahl1 - numbs.Zahl2;
-            
+            numbs.Zahl1 = numbs.Zahl1 - numbs.Zahl2;
+            numbs.Zahl2 = 0;
+
         }
     }
 
