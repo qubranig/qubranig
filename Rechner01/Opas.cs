@@ -8,11 +8,6 @@ namespace Rechner01
 {
     interface IOpas
     {
-        void Methode();// hallo hallo
-        int x { get; set; }
-        public void was_ist_was();
-        //hääääääääääääääää
-        string text { get; set; }
     }
     public static class opas2
     {

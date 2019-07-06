@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-
+using System.Windows.Input; //für die tasten Funktionalität
 
 namespace Rechner01
 {
@@ -49,7 +49,7 @@ namespace Rechner01
             if (!operant)
             {
                 if (zahl1 == 0)
-                {
+                {                    
                     hmmm.Zahl1 = (Convert.ToDouble((sender as System.Windows.Controls.Button).Content));
                     zahl1 = (Convert.ToDouble((sender as System.Windows.Controls.Button).Content));
                 }
@@ -82,7 +82,7 @@ namespace Rechner01
             textboxspeicher.Text = stringspeicher;
         }
 
-        public void op_click(object sender, RoutedEventArgs e)
+        public void op_click(object sender, RoutedEventArgs e) //operanten taste
         {
             operant = true;
             hmmm.Operant = Convert.ToString((sender as System.Windows.Controls.Button).Content);
@@ -109,11 +109,11 @@ namespace Rechner01
                     textbox1.Text = hmmm.Zahl1.ToString();
                     break;
                 case "-":
-                    opas2.methodetest(hmmm);
+                    subtraktion(hmmm);
                     textbox1.Clear();
-                    textbox1.Text = hmmm.Ergebniss.ToString();
-
+                    textbox1.Text = hmmm.Zahl1.ToString();
                     break;
+
 
             }
             string stringspeicher = hmmm.Zahl1 + "\n" + hmmm.Zahl2 + "\n" + hmmm.Ergebniss;
@@ -129,6 +129,16 @@ namespace Rechner01
                 numbs.Zahl2 =0;
             }
         }
+        private void subtraktion(Numbs numbs)
+        {
+
+            if (numbs.Zahl2 != 0)
+            {
+                numbs.Ergebniss = numbs.Zahl1 - numbs.Zahl2;
+                numbs.Zahl1 = numbs.Zahl1 - numbs.Zahl2;
+                numbs.Zahl2 = 0;
+            }
+        }
 
         private void Ce_Click_1(object sender, RoutedEventArgs e)
         {
@@ -137,6 +147,113 @@ namespace Rechner01
             hmmm.Zahl2 = 0;
             hmmm.Ergebniss = 0;
             hmmm.Operant = "";
+        }
+
+        private void Window_KeyDown(object sender, System.Windows.Input.KeyEventArgs e) //funktionalität für das drücken einer taste
+        {
+            //https://stackoverflow.com/questions/10626626/numpad-key-codes-in-c-sharp
+            #region //nummern(pad) tasten
+            if (e.Key == Key.NumPad0) // wenn 0 , dann führe aus
+            {
+                sender = /*button: */@null;
+                zahl_click(sender, e);
+            }
+            if (e.Key == Key.NumPad1) // wenn 1, dann führe aus
+            {
+                sender = /*button: */eins;
+                zahl_click(sender, e);
+            }
+            if (e.Key == Key.NumPad2) // wenn 2 , dann führe aus
+            {
+                sender = /*button: */zwei;
+                zahl_click(sender, e);
+            }
+            if (e.Key == Key.NumPad3) // wenn 3, dann führe aus
+            {
+                sender = /*button: */drei;
+                zahl_click(sender, e);
+            }
+            if (e.Key == Key.NumPad4) // wenn 4, dann führe aus
+            {
+                sender = /*button: */vier;
+                zahl_click(sender, e);
+            }
+            if (e.Key == Key.NumPad5) // wenn 5, dann führe aus
+            {
+                sender = /*button: */fünf;
+                zahl_click(sender, e);
+            }
+            if (e.Key == Key.NumPad6) // wenn 6, dann führe aus
+            {
+                sender = /*button: */sechs;
+                zahl_click(sender, e);
+            }
+            if (e.Key == Key.NumPad7) // wenn 7, dann führe aus
+            {
+                sender = /*button: */sieben;
+                zahl_click(sender, e);
+            }
+            if (e.Key == Key.NumPad8) // wenn 8, dann führe aus
+            {
+                sender = /*button: */acht;
+                zahl_click(sender, e);
+            }
+            if (e.Key == Key.NumPad9) // wenn 9, dann führe aus
+            {
+                sender = /*button: */neun;
+                zahl_click(sender, e);
+            }
+            #endregion // nummern(pad) tastem
+
+            #region //operanten tasten 
+            if (e.Key == Key.Add) // wenn Numpad +, dann führe aus
+            {
+                sender = /*button: */plus;
+                op_click(sender, e);
+            }
+            if (e.Key == Key.Subtract) // wenn Numpad -, dann führe aus
+            {
+                sender = /*button: */minus;
+                op_click(sender, e);
+            }
+            if (e.Key == Key.Divide) // wenn Numpad *, dann führe aus
+            {
+                sender = /*button: */geteilt;
+                op_click(sender, e);
+            }
+            if (e.Key == Key.Multiply) // wenn Numpad /, dann führe aus
+            {
+                sender = /*button: */multiplikation;
+                op_click(sender, e);
+            }
+            if (e.Key == Key.Return) // wenn Numpad ENTER, dann führe aus =
+            {
+                sender = /*button: */gleich;
+                Gleich_Click(sender, e);
+            } //Edit: irgendwas funktioniert mit dem erneuten ENTER und dem CE (löschen der textBox) nicht
+            #endregion //operanten tasten
+
+            #region //sonderzeichen wie das komma
+            if (e.Key == Key.Decimal) // wenn Numpad Komma, dann führe aus
+            {
+                sender = /*button: */komma;
+                op_click(sender, e);
+            } //das komma funktioniert bei der übergabe nicht richtig und interpretiert es nicht mit der zahl (also dranhängen), sondern löscht (!) die zahl....
+            if (e.Key == Key.Delete) // wenn ENTF, dann führe CE aus
+            {
+                sender = /*button: */delete;
+                Ce_Click_1(sender, e);
+            }
+            //backspace button funktionalität noch machen
+            /*
+            if (e.Key == Key.Back) // wenn ENTF, dann führe CE aus
+            {
+                sender = backspace;
+                Backspace_Click(sender, e);
+            }
+        */
+
+            #endregion // ende sonderzeichen
         }
 
         /// event über window 
