@@ -40,7 +40,7 @@
         <Button Content="-" Name="minus" Grid.Column="3" Grid.Row="3" FontSize="50"  Click="op_click"/>
         <Button Content="+/-" Name="vorzeichen" Grid.Column="0" Grid.Row="4" FontSize="50" Click="op_click" />
         <Button Content="0" Name="null" Grid.Column="1" Grid.Row="4" FontSize="50"  Click="zahl_click"/>
-        <Button Content="," Name="komma" Grid.Column="2" Grid.Row="4" FontSize="50" Click="op_click"/>
+        <Button Content="," Name="komma" Grid.Column="2" Grid.Row="4" FontSize="50" Click="Komma_Click"/>
         <Button Content="=" Name="gleich"  Grid.Column="3" Grid.Row="4" FontSize="50" Click="Gleich_Click" />
 
 

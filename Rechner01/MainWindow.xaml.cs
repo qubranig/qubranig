@@ -5,6 +5,23 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input; //für die tasten Funktionalität
+/// <summary>
+/// to do :
+/// -liste von zahlen und opereratoren -> brauchen wir andere andere methden (listezahlen[x] , operator[i] ... 
+/// -liste von objekten für speicher implementierung
+/// -tetxbox abschalten dass man nix reinschreiben kann 
+/// -methoden auslagern in eine statische klasse
+/// -kommazahlen 
+/// -
+/// 
+/// mögliche features: 
+/// ->webbrowser (vieleicht finden wir einen taschenrechner online dem wir die zaheln und operatoren übergebn könenn als gegen check )
+/// -die fertige rechungen auslagern in eine excel datei?
+/// 
+/// </summary>
+
+
+
 
 namespace Rechner01
 {
@@ -24,7 +41,7 @@ namespace Rechner01
     {
         List<Numbs> speicher = new List<Numbs>();
         bool operant = false;
-        bool ende = false;
+        bool DezimalStelle = false;
         double zahl1 = 0;
         double zahl2 = 0;
         Numbs hmmm = new Numbs();
@@ -34,50 +51,67 @@ namespace Rechner01
         {
             Numbs hmmm = new Numbs();
             InitializeComponent();
-
-            hmmm.Zahl1 = 2;
-            hmmm.Zahl2 = 3;
-            hmmm.Ergebniss = 4;
-
-
+    
         }//endemain
 
 
-        public void zahl_click(object sender, RoutedEventArgs e)
+        public void zahl_click(object sender, RoutedEventArgs e)///////////////////////////underconstruction   
         {
-
-            if (!operant)
+            if (DezimalStelle)
             {
-                if (zahl1 == 0)
-                {                    
-                    hmmm.Zahl1 = (Convert.ToDouble((sender as System.Windows.Controls.Button).Content));
-                    zahl1 = (Convert.ToDouble((sender as System.Windows.Controls.Button).Content));
+                double Zwsp=0;
+                if (!operant)
+                {
+                        Zwsp = (Convert.ToDouble((sender as System.Windows.Controls.Button).Content));
+                    
+                    hmmm.Zahl1 =hmmm.Zahl1+ Zwsp/10;
+
+                    textbox1.Text = hmmm.Zahl1.ToString();
+                    /////////////////////nicht fertig   ich kann eine nachkommastelle anfügen zumindest 
                 }
                 else
                 {
-                    hmmm.Zahl1 = hmmm.Zahl1 * 10 + (Convert.ToDouble((sender as System.Windows.Controls.Button).Content));
-                    zahl1 = zahl1 * 10 + (Convert.ToDouble((sender as System.Windows.Controls.Button).Content));
+                    Zwsp = (Convert.ToDouble((sender as System.Windows.Controls.Button).Content));
+                    Zwsp = Zwsp / 10;
+                    hmmm.Zahl2 += Zwsp;
+                    textbox1.Text = hmmm.Zahl2.ToString();
+
                 }
-
-                textbox1.Text = hmmm.Zahl1.ToString();
-
             }
             else
             {
-                if (zahl2 == 0)
+                if (!operant)
                 {
-                    hmmm.Zahl2 = (Convert.ToDouble((sender as System.Windows.Controls.Button).Content));
-                    zahl2 = (Convert.ToDouble((sender as System.Windows.Controls.Button).Content));
+                    if (zahl1 == 0)
+                    {
+                        hmmm.Zahl1 = (Convert.ToDouble((sender as System.Windows.Controls.Button).Content));
+                        zahl1 = (Convert.ToDouble((sender as System.Windows.Controls.Button).Content));
+                    }
+                    else
+                    {
+                        hmmm.Zahl1 = hmmm.Zahl1 * 10 + (Convert.ToDouble((sender as System.Windows.Controls.Button).Content));
+                        zahl1 = zahl1 * 10 + (Convert.ToDouble((sender as System.Windows.Controls.Button).Content));
+                    }
+
+                    textbox1.Text = hmmm.Zahl1.ToString();
+
                 }
                 else
                 {
-                    hmmm.Zahl2 = hmmm.Zahl2 * 10 + (Convert.ToDouble((sender as System.Windows.Controls.Button).Content));
-                    zahl2 = zahl2 * 10 + (Convert.ToDouble((sender as System.Windows.Controls.Button).Content));
+                    if (zahl2 == 0)
+                    {
+                        hmmm.Zahl2 = (Convert.ToDouble((sender as System.Windows.Controls.Button).Content));
+                        zahl2 = (Convert.ToDouble((sender as System.Windows.Controls.Button).Content));
+                    }
+                    else
+                    {
+                        hmmm.Zahl2 = hmmm.Zahl2 * 10 + (Convert.ToDouble((sender as System.Windows.Controls.Button).Content));
+                        zahl2 = zahl2 * 10 + (Convert.ToDouble((sender as System.Windows.Controls.Button).Content));
+                    }
+                    textbox1.Text = hmmm.Zahl2.ToString();
+
                 }
-                textbox1.Text = hmmm.Zahl2.ToString();
-
             }
-
             string stringspeicher = hmmm.Zahl1 + "\n" + hmmm.Zahl2 + "\n" + hmmm.Ergebniss;
             textboxspeicher.Text = stringspeicher;
         }
@@ -148,7 +182,10 @@ namespace Rechner01
             hmmm.Ergebniss = 0;
             hmmm.Operant = "";
         }
-
+        private void Komma_Click(object sender, RoutedEventArgs e)
+        {
+            DezimalStelle = true;
+        }
         private void Window_KeyDown(object sender, System.Windows.Input.KeyEventArgs e) //funktionalität für das drücken einer taste
         {
             //https://stackoverflow.com/questions/10626626/numpad-key-codes-in-c-sharp
@@ -234,7 +271,7 @@ namespace Rechner01
             #endregion //operanten tasten
 
             #region //sonderzeichen wie das komma
-            if (e.Key == Key.Decimal) // wenn Numpad Komma, dann führe aus
+            if (e.Key == Key.Decimal) // wenn Numpad Komma, dann führe aus ---- da brauchen wir ein neues event 
             {
                 sender = /*button: */komma;
                 op_click(sender, e);
@@ -255,6 +292,12 @@ namespace Rechner01
 
             #endregion // ende sonderzeichen
         }
+        private void NeuesObjekterstellen(int x)
+        {
+            x++;    // wir zählen eine zahl hoch mit der wir dann aussen den index der liste ansprechen
+            speicher.Add(new Numbs());
+        }
+
 
         /// event über window 
         /// // e.Key.toSTring();
