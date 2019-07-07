@@ -38,7 +38,7 @@ namespace Rechner01
      }
 
     public partial class MainWindow : Window
-    {
+    {//globale variablen
         List<Numbs> speicher = new List<Numbs>();
         bool operant = false;
         bool DezimalStelle = false;
@@ -55,10 +55,10 @@ namespace Rechner01
         }//endemain
 
 
-        public void zahl_click(object sender, RoutedEventArgs e)///////////////////////////underconstruction   
+        public void zahl_click(object sender, RoutedEventArgs e)///////////////////////////underconstruction (das wird das komma?)
         {
-            if (DezimalStelle)
-            {
+            if (DezimalStelle) //funktionalität für das komma und interpretation als dezimalstelle
+            { // später müssen wir das zeichen ersetzen mit double.Parse(TextBox1.Text.Replace('.', ',')
                 double Zwsp=0;
                 if (!operant)
                 {
@@ -133,7 +133,7 @@ namespace Rechner01
             ergebnis();
             operant = false;
         }
-        private void ergebnis()
+        private void ergebnis() //ErgebnisMethode
         {
             switch (hmmm.Operant)
             {
@@ -147,22 +147,41 @@ namespace Rechner01
                     textbox1.Clear();
                     textbox1.Text = hmmm.Zahl1.ToString();
                     break;
+                case "*":
+                    Multiplikation(hmmm);
+                    textbox1.Clear();
+                    textbox1.Text = hmmm.Zahl1.ToString();
+                    break;
+                case "/":
+                    Division(hmmm);
+                    textbox1.Clear();
+                    textbox1.Text = hmmm.Zahl1.ToString();
+                    break;
 
 
             }
+           
             string stringspeicher = hmmm.Zahl1 + "\n" + hmmm.Zahl2 + "\n" + hmmm.Ergebniss;
             textboxspeicher.Text = stringspeicher;
         }
       private void addition(Numbs numbs)
         {
-
+            /*
+            int istDezimal = 0;
             if (numbs.Zahl2 != 0)
             {
+                if (DezimalStelle)
+                {
+                    numbs.Zahl1 /= 10;
+                    istDezimal = 10;
+                }
+                */
                 numbs.Ergebniss = numbs.Zahl1 + numbs.Zahl2;
                 numbs.Zahl1 = numbs.Zahl1 + numbs.Zahl2;
-                numbs.Zahl2 =0;
-            }
-        }
+             //   numbs.Zahl1 *= istDezimal; //rechne das ergebnis *10 für die richtige anzeige wenn nachkomma
+                numbs.Zahl2 = 0;
+                    
+         }
         private void subtraktion(Numbs numbs)
         {
 
@@ -170,6 +189,26 @@ namespace Rechner01
             {
                 numbs.Ergebniss = numbs.Zahl1 - numbs.Zahl2;
                 numbs.Zahl1 = numbs.Zahl1 - numbs.Zahl2;
+                numbs.Zahl2 = 0;
+            }
+        }
+        private void Multiplikation(Numbs numbs)
+        {
+
+            if (numbs.Zahl2 != 0)
+            {
+                numbs.Ergebniss = numbs.Zahl1 * numbs.Zahl2;
+                numbs.Zahl1 = numbs.Zahl1 * numbs.Zahl2;
+                numbs.Zahl2 = 0;
+            }
+        }
+        private void Division(Numbs numbs)
+        {
+
+            if (numbs.Zahl2 != 0)
+            {
+                numbs.Ergebniss = numbs.Zahl1 / numbs.Zahl2;
+                numbs.Zahl1 = numbs.Zahl1 / numbs.Zahl2;
                 numbs.Zahl2 = 0;
             }
         }
@@ -184,7 +223,11 @@ namespace Rechner01
         }
         private void Komma_Click(object sender, RoutedEventArgs e)
         {
-            DezimalStelle = true;
+            DezimalStelle = true; 
+            if (DezimalStelle)
+            {
+            textbox1.Text += "," ;//display
+            }
         }
         private void Window_KeyDown(object sender, System.Windows.Input.KeyEventArgs e) //funktionalität für das drücken einer taste
         {
@@ -271,10 +314,10 @@ namespace Rechner01
             #endregion //operanten tasten
 
             #region //sonderzeichen wie das komma
-            if (e.Key == Key.Decimal) // wenn Numpad Komma, dann führe aus ---- da brauchen wir ein neues event 
+            if (e.Key == Key.Decimal) // wenn Numpad Komma, dann führe aus ---- da brauchen wir ein neues event - wie kommst du darauf? wdie soll doch nur springen wenn die taste gedrükt wird :) und das macht sie
             {
                 sender = /*button: */komma;
-                op_click(sender, e);
+                Komma_Click(sender, e);
             } //das komma funktioniert bei der übergabe nicht richtig und interpretiert es nicht mit der zahl (also dranhängen), sondern löscht (!) die zahl....
             if (e.Key == Key.Delete) // wenn ENTF, dann führe CE aus
             {
@@ -292,12 +335,27 @@ namespace Rechner01
 
             #endregion // ende sonderzeichen
         }
-        private void NeuesObjekterstellen(int x)
+        private void NeuesObjekterstellen(int x) // was ist das ??
         {
             x++;    // wir zählen eine zahl hoch mit der wir dann aussen den index der liste ansprechen
             speicher.Add(new Numbs());
         }
 
+
+        private void C_Click(object sender, RoutedEventArgs e) // C - alles (auch objekte) löschen!
+        {
+            DezimalStelle = false; //urzustand
+            hmmm = new Numbs();
+            textbox1.Clear();
+        }
+
+        private void Vorzeichen_Click(object sender, RoutedEventArgs e)
+        {
+            /* - nach dem prinzip - aber wenn das +/- bei der 2. zahl ist, dann soll was anderes geschehen
+            hmmm.Zahl1 *= -1;
+            textbox1.Text = hmmm.Zahl1.ToString();
+            */
+        }
 
         /// event über window 
         /// // e.Key.toSTring();
