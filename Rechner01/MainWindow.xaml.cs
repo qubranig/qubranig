@@ -76,8 +76,8 @@ namespace Rechner01
             InitializeComponent();
             textbox1.IsReadOnly = true;
 
-    //        Task SpecialTaskForce = new Task(Aniläuftzumbus);
-  //          SpecialTaskForce.Start();
+            Task SpecialTaskForce = new Task(AktualisiereWhiteBox);
+            SpecialTaskForce.Start();
 
         }//endemain
 
@@ -338,7 +338,21 @@ namespace Rechner01
         {
             
         }
+        //methode zur fensteraktualisierung
+        private void AktualisiereWhiteBox()
+        {
+            string stringspeicher = hmmm.Zahl1 + "\n" + hmmm.Zahl2 + "\n" + hmmm.Ergebniss;
+            textboxspeicher.Text = stringspeicher;
+        }
+        private void AktualisiereWhiteBoxInSchleifeOMG()
+        {
+            while (true)
+            {
+                string stringspeicher = hmmm.Zahl1 + "\n" + hmmm.Zahl2 + "\n" + hmmm.Ergebniss;
+                textboxspeicher.Text = stringspeicher;
+            }
+        }
 
-       
-    }
-}
+
+    }//ENDE MainWindow : Window
+}//ENDE Namespace
