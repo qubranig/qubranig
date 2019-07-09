@@ -123,6 +123,7 @@ namespace Rechner01
             operant = true;
             hmmm.Operant = Convert.ToString((sender as System.Windows.Controls.Button).Content);
             opzeichen.Text = hmmm.Operant.ToString();
+            
             ergebnis();
             string stringspeicher = hmmm.Zahl1 + "\n" + hmmm.Zahl2 + "\n" + hmmm.Ergebniss;
             textboxspeicher.Text = stringspeicher;
@@ -266,7 +267,7 @@ namespace Rechner01
                 sender = /*button: */multiplikation;
                 op_click(sender, e);
             }
-            if (e.Key == Key.Return) // wenn Numpad ENTER, dann führe aus =
+            if (e.Key == Key.Enter) // wenn Numpad ENTER, dann führe aus =
             {
                 sender = /*button: */gleich;
                 Gleich_Click(sender, e);
@@ -305,10 +306,7 @@ namespace Rechner01
         //todo
         private void Vorzeichen_Click(object sender, RoutedEventArgs e)
         {
-            /* - nach dem prinzip - aber wenn das +/- bei der 2. zahl ist, dann soll was anderes geschehen
-            hmmm.Zahl1 *= -1;
-            textbox1.Text = hmmm.Zahl1.ToString();
-            */
+            
         }
 
        
