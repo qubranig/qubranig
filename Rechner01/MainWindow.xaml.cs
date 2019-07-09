@@ -9,9 +9,8 @@ using System.Windows.Input; //für die tasten Funktionalität
 /// to do :
 /// -liste von zahlen und opereratoren -> brauchen wir andere andere methden (listezahlen[x] , operator[i] ... 
 /// -liste von objekten für speicher implementierung
-/// -tetxbox abschalten dass man nix reinschreiben kann 
-/// -methoden auslagern in eine statische klasse
-/// -kommazahlen 
+/// -methoden auslagern in eine statische klasse --- 
+///
 /// -
 /// 
 /// mögliche features: 
@@ -25,13 +24,13 @@ using System.Windows.Input; //für die tasten Funktionalität
 
 namespace Rechner01
 {
-     public class Numbs
-     {
+    public class Numbs
+    {
         public double Zahl1 { get; set; }
         public double Zahl2 { get; set; }
         public List<double> listezahlen { get; set; }
         public double Ergebniss { get; set; }
-
+        public int Dezimalstelle { get; set; } //das nix gut
         public string Operant { get; set; }
         public List<string>listeoperanten { get; set; }
 
@@ -41,42 +40,42 @@ namespace Rechner01
     {//globale variablen
         List<Numbs> speicher = new List<Numbs>();
         bool operant = false;
-        bool DezimalStelle = false;
-        double zahl1 = 0;
+        bool BoolDezimalStelle = false;
+        double zahl1 = 0;//nur platzhalter zum testen 
         double zahl2 = 0;
         Numbs hmmm = new Numbs();
-
+        int dezimalstelle=0;
 
         public MainWindow()
         {
             Numbs hmmm = new Numbs();
             InitializeComponent();
-    
+            textbox1.IsEnabled = false;
         }//endemain
 
-
-        public void zahl_click(object sender, RoutedEventArgs e)///////////////////////////underconstruction (das wird das komma?)
+        //event für die Zahleneingabe
+        public void zahl_click(object sender, RoutedEventArgs e)//check:)
         {
-            if (DezimalStelle) //funktionalität für das komma und interpretation als dezimalstelle
-            { // später müssen wir das zeichen ersetzen mit double.Parse(TextBox1.Text.Replace('.', ',')
+            if (BoolDezimalStelle) //funktionalität für das komma und interpretation als dezimalstelle
+            { // später müssen wir das zeichen ersetzen mit double.Parse(TextBox1.Text.Replace('.', ',') wie meinst
                 double Zwsp=0;
                 if (!operant)
                 {
-                        Zwsp = (Convert.ToDouble((sender as System.Windows.Controls.Button).Content));
-                    
-                    hmmm.Zahl1 =hmmm.Zahl1+ Zwsp/10;
+                        Zwsp = (Convert.ToInt32((sender as System.Windows.Controls.Button).Content));
+                    dezimalstelle++;
+                    hmmm.Zahl1 =hmmm.Zahl1+ Zwsp/(Math.Pow(10,dezimalstelle));
 
                     textbox1.Text = hmmm.Zahl1.ToString();
-                    /////////////////////nicht fertig   ich kann eine nachkommastelle anfügen zumindest 
                 }
                 else
                 {
-                    Zwsp = (Convert.ToDouble((sender as System.Windows.Controls.Button).Content));
-                    Zwsp = Zwsp / 10;
-                    hmmm.Zahl2 += Zwsp;
-                    textbox1.Text = hmmm.Zahl2.ToString();
+                    Zwsp = (Convert.ToInt32((sender as System.Windows.Controls.Button).Content));
+                    dezimalstelle++;
+                    hmmm.Zahl2 = hmmm.Zahl2 + Zwsp / (Math.Pow(10, dezimalstelle));
 
+                    textbox1.Text = hmmm.Zahl2.ToString();
                 }
+           
             }
             else
             {
@@ -116,8 +115,11 @@ namespace Rechner01
             textboxspeicher.Text = stringspeicher;
         }
 
+        //event für die eingabe eine s operators
         public void op_click(object sender, RoutedEventArgs e) //operanten taste
         {
+            dezimalstelle = 0;
+            BoolDezimalStelle = false;
             operant = true;
             hmmm.Operant = Convert.ToString((sender as System.Windows.Controls.Button).Content);
             opzeichen.Text = hmmm.Operant.ToString();
@@ -127,108 +129,66 @@ namespace Rechner01
         }
 
     
-  
+        //event für ergebnis (enter taste)
         private void Gleich_Click(object sender, RoutedEventArgs e)
         {
             ergebnis();
+            dezimalstelle = 0;
             operant = false;
         }
+        //TODO
+        //wie auslagern ?  Die textboxen !!!  
         private void ergebnis() //ErgebnisMethode
         {
             switch (hmmm.Operant)
             {
                 case "+":
-                    addition(hmmm);
+                    Operanten.Addition(hmmm);
                     textbox1.Clear();
                     textbox1.Text = hmmm.Zahl1.ToString();
                     break;
                 case "-":
-                    subtraktion(hmmm);
+                    Operanten.Subtraktion(hmmm);
                     textbox1.Clear();
                     textbox1.Text = hmmm.Zahl1.ToString();
                     break;
                 case "*":
-                    Multiplikation(hmmm);
+                    Operanten.Multiplikation(hmmm);
                     textbox1.Clear();
                     textbox1.Text = hmmm.Zahl1.ToString();
                     break;
                 case "/":
-                    Division(hmmm);
+                    Operanten.Division(hmmm);
                     textbox1.Clear();
                     textbox1.Text = hmmm.Zahl1.ToString();
                     break;
 
 
             }
-           
+
             string stringspeicher = hmmm.Zahl1 + "\n" + hmmm.Zahl2 + "\n" + hmmm.Ergebniss;
             textboxspeicher.Text = stringspeicher;
         }
-      private void addition(Numbs numbs)
-        {
-            /*
-            int istDezimal = 0;
-            if (numbs.Zahl2 != 0)
-            {
-                if (DezimalStelle)
-                {
-                    numbs.Zahl1 /= 10;
-                    istDezimal = 10;
-                }
-                */
-                numbs.Ergebniss = numbs.Zahl1 + numbs.Zahl2;
-                numbs.Zahl1 = numbs.Zahl1 + numbs.Zahl2;
-             //   numbs.Zahl1 *= istDezimal; //rechne das ergebnis *10 für die richtige anzeige wenn nachkomma
-                numbs.Zahl2 = 0;
-                    
-         }
-        private void subtraktion(Numbs numbs)
-        {
-
-            if (numbs.Zahl2 != 0)
-            {
-                numbs.Ergebniss = numbs.Zahl1 - numbs.Zahl2;
-                numbs.Zahl1 = numbs.Zahl1 - numbs.Zahl2;
-                numbs.Zahl2 = 0;
-            }
-        }
-        private void Multiplikation(Numbs numbs)
-        {
-
-            if (numbs.Zahl2 != 0)
-            {
-                numbs.Ergebniss = numbs.Zahl1 * numbs.Zahl2;
-                numbs.Zahl1 = numbs.Zahl1 * numbs.Zahl2;
-                numbs.Zahl2 = 0;
-            }
-        }
-        private void Division(Numbs numbs)
-        {
-
-            if (numbs.Zahl2 != 0)
-            {
-                numbs.Ergebniss = numbs.Zahl1 / numbs.Zahl2;
-                numbs.Zahl1 = numbs.Zahl1 / numbs.Zahl2;
-                numbs.Zahl2 = 0;
-            }
-        }
-
+        //event ce
         private void Ce_Click_1(object sender, RoutedEventArgs e)
         {
             textbox1.Clear();
             hmmm.Zahl1 = 0;
             hmmm.Zahl2 = 0;
+            dezimalstelle = 0;
             hmmm.Ergebniss = 0;
             hmmm.Operant = "";
         }
+        //event komma
         private void Komma_Click(object sender, RoutedEventArgs e)
         {
-            DezimalStelle = true; 
-            if (DezimalStelle)
+            BoolDezimalStelle = true; 
+            if (BoolDezimalStelle)
             {
             textbox1.Text += "," ;//display
             }
         }
+        //!!!event numpad support
         private void Window_KeyDown(object sender, System.Windows.Input.KeyEventArgs e) //funktionalität für das drücken einer taste
         {
             //https://stackoverflow.com/questions/10626626/numpad-key-codes-in-c-sharp
@@ -335,20 +295,14 @@ namespace Rechner01
 
             #endregion // ende sonderzeichen
         }
-        private void NeuesObjekterstellen(int x) // was ist das ??
-        {
-            x++;    // wir zählen eine zahl hoch mit der wir dann aussen den index der liste ansprechen
-            speicher.Add(new Numbs());
-        }
-
-
+        //event c
         private void C_Click(object sender, RoutedEventArgs e) // C - alles (auch objekte) löschen!
         {
-            DezimalStelle = false; //urzustand
+            BoolDezimalStelle = false; //urzustand
             hmmm = new Numbs();
             textbox1.Clear();
         }
-
+        //todo
         private void Vorzeichen_Click(object sender, RoutedEventArgs e)
         {
             /* - nach dem prinzip - aber wenn das +/- bei der 2. zahl ist, dann soll was anderes geschehen
@@ -357,11 +311,6 @@ namespace Rechner01
             */
         }
 
-        /// event über window 
-        /// // e.Key.toSTring();
-        ///  methode zahl_click
-        ///  https://stackoverflow.com/questions/7103360/how-to-get-pressed-char-from-system-windows-input-keyeventargs
-        ///  /*
-        ///   switch(e.Key)            {                case Key.D0: Berechne('0', null); break;                case Key.D1: Berechne('1', null); break;                case Key.D2: Berechne('2', null); break;                case Key.D3: Berechne('3', null); break;                case Key.D4: Berechne('4', null); break;                case Key.D5: Berechne('5', null); break;                case Key.D6: Berechne('6', null); break;                case Key.D7: Berechne('7', null); break;                case Key.D8: Berechne('8', null); break;                case Key.D9: Berechne('9', null); break;                case Key.NumPad0: Berechne('0', null); break;                case Key.NumPad1: Berechne('1', null); break;                case Key.NumPad2: Berechne('2', null); break;                case Key.NumPad3: Berechne('3', null); break;                case Key.NumPad4: Berechne('4', null); break;                case Key.NumPad5: Berechne('5', null); break;                case Key.NumPad6: Berechne('6', null); break; */
+       
     }
 }

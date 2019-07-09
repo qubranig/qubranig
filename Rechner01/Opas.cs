@@ -6,19 +6,49 @@ using System.Threading.Tasks;
 
 namespace Rechner01
 {
-    interface IOpas
+  
+    public static class Operanten
     {
-    }
-    public static class opas2
-    {
-        static public void methodetest(Numbs numbs)
+        public static void Addition(Numbs numbs)
         {
-            numbs.Ergebniss = numbs.Zahl1 - numbs.Zahl2;
-            numbs.Zahl1 = numbs.Zahl1 - numbs.Zahl2;
+   
+            numbs.Ergebniss = numbs.Zahl1 + numbs.Zahl2;
+            numbs.Zahl1 = numbs.Zahl1 + numbs.Zahl2;
+
             numbs.Zahl2 = 0;
 
-            int x = 0;
         }
+        public static void Subtraktion(Numbs numbs)
+        {
+
+            if (numbs.Zahl2 != 0)// hier stimmt was nicht ...   
+            {
+                numbs.Ergebniss = numbs.Zahl1 - numbs.Zahl2;
+                numbs.Zahl1 = numbs.Zahl1 - numbs.Zahl2;
+                numbs.Zahl2 = 0;
+            }
+        }
+        public static void Multiplikation(Numbs numbs)
+        {
+
+            if (numbs.Zahl2 != 0)
+            {
+                numbs.Ergebniss = numbs.Zahl1 * numbs.Zahl2;
+                numbs.Zahl1 = numbs.Zahl1 * numbs.Zahl2;
+                numbs.Zahl2 = 0;
+            }
+        }
+        public static void Division(Numbs numbs)
+        {
+
+            if (numbs.Zahl2 != 0)
+            {
+                numbs.Ergebniss = numbs.Zahl1 / numbs.Zahl2;
+                numbs.Zahl1 = numbs.Zahl1 / numbs.Zahl2;
+                numbs.Zahl2 = 0;
+            }
+        }
+
     }
 
 }
