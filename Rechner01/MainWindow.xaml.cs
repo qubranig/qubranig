@@ -76,8 +76,8 @@ namespace Rechner01
             InitializeComponent();
             textbox1.IsReadOnly = true;
 
-            Task SpecialTaskForce = new Task(AktualisiereWhiteBox);
-            SpecialTaskForce.Start();
+            //Task SpecialTaskForce = new Task(AktualisiereWhiteBox);  geht nicht
+            //SpecialTaskForce.Start();
 
         }//endemain
 
@@ -89,9 +89,9 @@ namespace Rechner01
    
         //event für die Zahleneingabe
         public void zahl_click(object sender, RoutedEventArgs e)//check:)
-        {
-            if (BoolDezimalStelle) //funktionalität für das komma und interpretation als dezimalstelle
-            { // später müssen wir das zeichen ersetzen mit double.Parse(TextBox1.Text.Replace('.', ',') wie meinst
+        { 
+            if (BoolDezimalStelle)//interpretation als dezimalstelle
+            { 
                 double Zwsp=0;
                 if (!operant)
                 {
@@ -145,6 +145,7 @@ namespace Rechner01
 
                 }
             }
+            AktualisiereWhiteBox();
             string stringspeicher = hmmm.Zahl1 + "\n" + hmmm.Zahl2 + "\n" + hmmm.Ergebniss;
             textboxspeicher.Text = stringspeicher;
         }
@@ -160,6 +161,7 @@ namespace Rechner01
             ergebnis();
             string stringspeicher = hmmm.Zahl1 + "\n" + hmmm.Zahl2 + "\n" + hmmm.Ergebniss;
             textboxspeicher.Text = stringspeicher;
+            AktualisiereWhiteBox();
         }
         //event für ergebnis (enter taste)
         private void Gleich_Click(object sender, RoutedEventArgs e)
@@ -167,6 +169,7 @@ namespace Rechner01
             ergebnis();
             dezimalstelle = 0;
             operant = false;
+            AktualisiereWhiteBox();
         }
         //TODO
         //wie auslagern ?  Die textboxen !!!  
@@ -198,6 +201,7 @@ namespace Rechner01
             }
             string stringspeicher = hmmm.Zahl1 + "\n" + hmmm.Zahl2 + "\n" + hmmm.Ergebniss;
             textboxspeicher.Text = stringspeicher;
+            AktualisiereWhiteBox();
         }
         //event ce
         private void Ce_Click_1(object sender, RoutedEventArgs e)
@@ -208,6 +212,7 @@ namespace Rechner01
             dezimalstelle = 0;
             hmmm.Ergebniss = 0;
             hmmm.Operant = "";
+            AktualisiereWhiteBox();
         }
         //event komma
         private void Komma_Click(object sender, RoutedEventArgs e)
@@ -217,6 +222,7 @@ namespace Rechner01
             {
             textbox1.Text += "," ;//display
             }
+            AktualisiereWhiteBox();
         }
         //event numpad support =)
         private void Window_KeyDown(object sender, System.Windows.Input.KeyEventArgs e) //funktionalität für das drücken einer taste
@@ -324,6 +330,7 @@ namespace Rechner01
         */
 
             #endregion // ende sonderzeichen
+            AktualisiereWhiteBox();
         }
         //event c
         private void C_Click(object sender, RoutedEventArgs e) // C - alles (auch objekte) löschen!
@@ -331,6 +338,7 @@ namespace Rechner01
             BoolDezimalStelle = false; //urzustand
             hmmm = new Numbs();
             textbox1.Clear();
+            AktualisiereWhiteBox();
         }
         //todo
         //plusminus
