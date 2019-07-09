@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input; //für die tasten Funktionalität
+using System.Timers;
 /// <summary>
 /// to do :
 /// -liste von zahlen und opereratoren -> brauchen wir andere andere methden (listezahlen[x] , operator[i] ... 
@@ -36,6 +37,7 @@ namespace Rechner01
 
      }
 
+
     public partial class MainWindow : Window
     {//globale variablen
         List<Numbs> speicher = new List<Numbs>();
@@ -45,14 +47,43 @@ namespace Rechner01
         double zahl2 = 0;
         Numbs hmmm = new Numbs();
         int dezimalstelle=0;
+        
+
+        public void Aniläuftzumbus()
+        {
+            string[] ani = new string[] { "     .", "|   . ", " |   .  ", "| |  .   ", "| | .    ", "| |    ", "|.|     " };
+            while (true)
+            {
+                int i = 0;
+                for (i = 0; i < ani.Length; i++)
+                {
+
+                    animeerzion.Text = ani[i];
+                }
+
+            }
+        }
 
         public MainWindow()
         {
             Numbs hmmm = new Numbs();
             InitializeComponent();
-            textbox1.IsEnabled = false;
-        }//endemain
+            textbox1.IsReadOnly = true;
 
+            Task SpecialTaskForce = new Task(Aniläuftzumbus);
+            SpecialTaskForce.Start();
+
+
+
+
+            //animeerzion.Text = Aniläuftzumbus();
+            //Timer TimerFürAni = new Timer(1000);
+            //TimerFürAni.Elapsed+=Aniläuftzumbus;
+            //TimerFürAni.AutoReset = true;
+            //TimerFürAni.Enabled = true;
+
+        }//endemain
+   
         //event für die Zahleneingabe
         public void zahl_click(object sender, RoutedEventArgs e)//check:)
         {
@@ -122,8 +153,7 @@ namespace Rechner01
             BoolDezimalStelle = false;
             operant = true;
             hmmm.Operant = Convert.ToString((sender as System.Windows.Controls.Button).Content);
-            opzeichen.Text = hmmm.Operant.ToString();
-            
+
             ergebnis();
             string stringspeicher = hmmm.Zahl1 + "\n" + hmmm.Zahl2 + "\n" + hmmm.Ergebniss;
             textboxspeicher.Text = stringspeicher;
@@ -164,9 +194,7 @@ namespace Rechner01
                     textbox1.Text = hmmm.Zahl1.ToString();
                     break;
 
-
             }
-
             string stringspeicher = hmmm.Zahl1 + "\n" + hmmm.Zahl2 + "\n" + hmmm.Ergebniss;
             textboxspeicher.Text = stringspeicher;
         }
