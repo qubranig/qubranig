@@ -22,26 +22,26 @@
             <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <Button x:Name="delete" Content="ce" Grid.Column="0" Grid.Row="0" FontSize="50" Click="Ce_Click_1" />
-        <Button Content="c" Name="c" FontSize="50" Grid.Column="1" Grid.Row="0" Click="C_Click"/>
-        <Button Content="back" Name="back" FontSize="50" Grid.Column="2" Grid.Row="0"/>
-        <Button Content="/" Name="geteilt" FontSize="50" Grid.Column="3" Grid.Row="0" Click="op_click"/>
-        <Button Content="7" Name="sieben" FontSize="50" Grid.Column="0" Grid.Row="1" Click="zahl_click"/>
-        <Button Content="8" Name="acht" FontSize="50" Grid.Column="1" Grid.Row="1" Click="zahl_click"/>
-        <Button Content="9" Name="neun"  FontSize="50"  Grid.Column="2" Grid.Row="1" Click="zahl_click"/>
-        <Button Content="*" Name="multiplikation" FontSize="50"  Grid.Column="3" Grid.Row="1" Click="op_click"/>
-        <Button Content="4" Name="vier" Grid.Column="0" FontSize="50"  Grid.Row="2" Click="zahl_click"/>
-        <Button Content="5" Name="fünf" Grid.Column="1" Grid.Row="2" FontSize="50"  Click="zahl_click"/>
-        <Button Content="6" Name="sechs" Grid.Column="2" Grid.Row="2" FontSize="50" Click="zahl_click"/>
-        <Button Content="+" Name="plus" Grid.Column="3" Grid.Row="2" FontSize="50" Click="op_click" />
-        <Button Content="1" Name="eins" Grid.Column="0" Grid.Row="3" FontSize="50" Click="zahl_click"  />
-        <Button Content="2" Name="zwei" Grid.Column="1" Grid.Row="3" FontSize="50" Click="zahl_click" />
-        <Button Content="3" Name="drei" Grid.Column="2" Grid.Row="3" FontSize="50" Click="zahl_click"/>
-        <Button Content="-" Name="minus" Grid.Column="3" Grid.Row="3" FontSize="50"  Click="op_click"/>
-        <Button Content="+/-" Name="vorzeichen" Grid.Column="0" Grid.Row="4" FontSize="50" Click="Vorzeichen_Click" />
-        <Button Content="0" Name="null" Grid.Column="1" Grid.Row="4" FontSize="50"  Click="zahl_click"/>
-        <Button Content="," Name="komma" Grid.Column="2" Grid.Row="4" FontSize="50" Click="Komma_Click"/>
-        <Button Content="=" Name="gleich"  Grid.Column="3" Grid.Row="4" FontSize="50" Click="Gleich_Click" />
+        <Button x:Name="delete"  Background="Black" Foreground="White" Content="ce" Grid.Column="0" Grid.Row="0" FontSize="50" Click="Ce_Click_1" />
+        <Button Content="c" Background="Black" Foreground="White" Name="c" FontSize="50" Grid.Column="1" Grid.Row="0" Click="C_Click"/>
+        <Button Content="back" Background="Black" Foreground="White" Name="back" FontSize="50" Grid.Column="2" Grid.Row="0"/>
+        <Button Content="/" Background="Black" Foreground="White" Name="geteilt" FontSize="50" Grid.Column="3" Grid.Row="0" Click="op_click"/>
+        <Button Content="7" Background="Black" Foreground="White" Name="sieben" FontSize="50" Grid.Column="0" Grid.Row="1" Click="zahl_click"/>
+        <Button Content="8" Background="Black" Foreground="White" Name="acht" FontSize="50" Grid.Column="1" Grid.Row="1" Click="zahl_click"/>
+        <Button Content="9" Background="Black" Foreground="White" Name="neun"  FontSize="50"  Grid.Column="2" Grid.Row="1" Click="zahl_click"/>
+        <Button Content="*" Background="Black" Foreground="White" Name="multiplikation" FontSize="50"  Grid.Column="3" Grid.Row="1" Click="op_click"/>
+        <Button Content="4" Background="Black" Foreground="White" Name="vier" Grid.Column="0" FontSize="50"  Grid.Row="2" Click="zahl_click"/>
+        <Button Content="5" Background="Black" Foreground="White" Name="fünf" Grid.Column="1" Grid.Row="2" FontSize="50"  Click="zahl_click"/>
+        <Button Content="6" Background="Black" Foreground="White" Name="sechs" Grid.Column="2" Grid.Row="2" FontSize="50" Click="zahl_click"/>
+        <Button Content="+" Background="Black" Foreground="White" Name="plus" Grid.Column="3" Grid.Row="2" FontSize="50" Click="op_click" />
+        <Button Content="1" Background="Black" Foreground="White" Name="eins" Grid.Column="0" Grid.Row="3" FontSize="50" Click="zahl_click"  />
+        <Button Content="2" Background="Black" Foreground="White" Name="zwei" Grid.Column="1" Grid.Row="3" FontSize="50" Click="zahl_click" />
+        <Button Content="3" Background="Black" Foreground="White" Name="drei" Grid.Column="2" Grid.Row="3" FontSize="50" Click="zahl_click"/>
+        <Button Content="-" Background="Black" Foreground="White" Name="minus" Grid.Column="3" Grid.Row="3" FontSize="50"  Click="op_click"/>
+        <Button Content="+/-" Background="Black" Foreground="White" Name="vorzeichen" Grid.Column="0" Grid.Row="4" FontSize="50" Click="Vorzeichen_Click" />
+        <Button Content="0" Background="Black" Foreground="White" Name="null" Grid.Column="1" Grid.Row="4" FontSize="50"  Click="zahl_click"/>
+        <Button Content="," Background="Black" Foreground="White" Name="komma" Grid.Column="2" Grid.Row="4" FontSize="50" Click="Komma_Click"/>
+        <Button Content="=" Background="Black" Foreground="White" Name="gleich"  Grid.Column="3" Grid.Row="4" FontSize="50" Click="Gleich_Click" />
 
 
 
@@ -50,5 +50,6 @@
         <TextBox Name="animeerzion" Grid.Column="4" HorizontalAlignment="Left" Height="106" Margin="37,-156,-164,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="128" RenderTransformOrigin="-0.117,-0.87"/>
 
     </Grid>
+    
 
 </Window>

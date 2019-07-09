@@ -5,14 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Globalization;
 using System.Timers;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input; //für die tasten Funktionalität
-using System.Timers;
+
 
 namespace Rechner01
 {

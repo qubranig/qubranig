@@ -64,25 +64,28 @@ namespace Rechner01
             }
         }
 
+
+
+        //hier steht nix 
+
+
+
         public MainWindow()
         {
             Numbs hmmm = new Numbs();
             InitializeComponent();
             textbox1.IsReadOnly = true;
 
-            Task SpecialTaskForce = new Task(Aniläuftzumbus);
-            SpecialTaskForce.Start();
-
-
-
-
-            //animeerzion.Text = Aniläuftzumbus();
-            //Timer TimerFürAni = new Timer(1000);
-            //TimerFürAni.Elapsed+=Aniläuftzumbus;
-            //TimerFürAni.AutoReset = true;
-            //TimerFürAni.Enabled = true;
+    //        Task SpecialTaskForce = new Task(Aniläuftzumbus);
+  //          SpecialTaskForce.Start();
 
         }//endemain
+
+
+
+        //und hier steht auch nix 
+
+
    
         //event für die Zahleneingabe
         public void zahl_click(object sender, RoutedEventArgs e)//check:)
@@ -146,7 +149,7 @@ namespace Rechner01
             textboxspeicher.Text = stringspeicher;
         }
 
-        //event für die eingabe eine s operators
+        //event für die eingabe eines operators
         public void op_click(object sender, RoutedEventArgs e) //operanten taste
         {
             dezimalstelle = 0;
@@ -158,8 +161,6 @@ namespace Rechner01
             string stringspeicher = hmmm.Zahl1 + "\n" + hmmm.Zahl2 + "\n" + hmmm.Ergebniss;
             textboxspeicher.Text = stringspeicher;
         }
-
-    
         //event für ergebnis (enter taste)
         private void Gleich_Click(object sender, RoutedEventArgs e)
         {
@@ -217,7 +218,7 @@ namespace Rechner01
             textbox1.Text += "," ;//display
             }
         }
-        //!!!event numpad support
+        //event numpad support =)
         private void Window_KeyDown(object sender, System.Windows.Input.KeyEventArgs e) //funktionalität für das drücken einer taste
         {
             //https://stackoverflow.com/questions/10626626/numpad-key-codes-in-c-sharp
@@ -332,6 +333,7 @@ namespace Rechner01
             textbox1.Clear();
         }
         //todo
+        //plusminus
         private void Vorzeichen_Click(object sender, RoutedEventArgs e)
         {
             
