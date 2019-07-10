@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input; //für die tasten Funktionalität
 using System.Timers;
+using System.Threading;
 /// <summary>
 /// to do :
 /// -liste von zahlen und opereratoren -> brauchen wir andere andere methden (listezahlen[x] , operator[i] ... 
@@ -37,7 +38,7 @@ namespace Rechner01
 
      }
 
-
+    
     public partial class MainWindow : Window
     {//globale variablen
         List<Numbs> speicher = new List<Numbs>();
@@ -47,23 +48,27 @@ namespace Rechner01
         double zahl2 = 0;
         Numbs hmmm = new Numbs();
         int dezimalstelle=0;
-        
+        public static MainWindow StaticMainWindow;
 
         public void Aniläuftzumbus()
         {
             string[] ani = new string[] { "     .", "|   . ", " |   .  ", "| |  .   ", "| | .    ", "| |    ", "|.|     " };
+           
             while (true)
             {
                 int i = 0;
                 for (i = 0; i < ani.Length; i++)
                 {
-
-                    animeerzion.Text = ani[i];
+                    Thread.Sleep(1000);
+                    Dispatcher.Invoke(()=> animeerzion.Text = ani[i]);
                 }
 
             }
         }
-
+        public async void taskmethode()
+        {
+            await Task.Run(Aniläuftzumbus);
+        }
 
 
         //hier steht nix 
@@ -74,10 +79,11 @@ namespace Rechner01
         {
             Numbs hmmm = new Numbs();
             InitializeComponent();
+            StaticMainWindow = this;
             textbox1.IsReadOnly = true;
+            taskmethode();
 
-            //Task SpecialTaskForce = new Task(AktualisiereWhiteBox);  geht nicht
-            //SpecialTaskForce.Start();
+           
 
         }//endemain
 
@@ -86,7 +92,7 @@ namespace Rechner01
         //und hier steht auch nix 
 
 
-   
+       
         //event für die Zahleneingabe
         public void zahl_click(object sender, RoutedEventArgs e)//check:)
         { 
@@ -361,6 +367,6 @@ namespace Rechner01
             }
         }
 
-
+        //https://www.youtube.com/watch?v=2moh18sh5p4   Async / Await
     }//ENDE MainWindow : Window
 }//ENDE Namespace

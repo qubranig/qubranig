@@ -11,6 +11,7 @@ using System.Windows.Input; //für die tasten Funktionalität
 
 namespace Rechner01
 {
+    
 
     public static class Operanten
     {
@@ -19,6 +20,7 @@ namespace Rechner01
             numbs.Ergebniss = numbs.Zahl1 + numbs.Zahl2;
             numbs.Zahl1 = numbs.Zahl1 + numbs.Zahl2;
             numbs.Zahl2 = 0;
+          //MainWindow.StaticMainWindow.textbox1   so bekomm ich die events aus der main !!!!
         }
         public static void Subtraktion(Numbs numbs)
         {
