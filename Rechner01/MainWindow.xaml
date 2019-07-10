@@ -47,9 +47,9 @@
 
         <TextBox Name="textbox1"  Foreground="Purple" Background="LightYellow" FontSize="50" HorizontalAlignment="Left" Height="106" Margin="24,-156,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="521" Grid.ColumnSpan="4"/>
         <TextBox Name="textboxspeicher" Background="LightYellow" Grid.Column="4" HorizontalAlignment="Left" Height="226" Margin="37,36,-164,0" Grid.Row="2" TextWrapping="Wrap" FontSize="30" Text="supbox" VerticalAlignment="Top" Width="128" Grid.RowSpan="3"/>
-        <TextBox Name="animeerzion" Grid.Column="4" HorizontalAlignment="Left" Height="106" Margin="37,-156,-164,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="128" RenderTransformOrigin="-0.117,-0.87"/>
+        <TextBox Name="animeerzion" FontSize="50"  Grid.Column="4" HorizontalAlignment="Left" Height="70" Margin="37,-156,-164,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="128" RenderTransformOrigin="-0.117,-0.87"/>
 
     </Grid>
-    
+
 
 </Window>

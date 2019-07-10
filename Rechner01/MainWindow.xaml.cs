@@ -7,12 +7,17 @@ using System.Windows;
 using System.Windows.Input; //für die tasten Funktionalität
 using System.Timers;
 using System.Threading;
+using System.Windows.Media;
+
 /// <summary>
 /// to do :
 /// -liste von zahlen und opereratoren -> brauchen wir andere andere methden (listezahlen[x] , operator[i] ... 
 /// -liste von objekten für speicher implementierung
 /// -methoden auslagern in eine statische klasse --- 
 ///
+/// XML tasten foreground
+/// 
+/// 
 /// -
 /// 
 /// mögliche features: 
@@ -52,18 +57,24 @@ namespace Rechner01
 
         public void Aniläuftzumbus()
         {
-            string[] ani = new string[] { "     .", "|   . ", " |   .  ", "| |  .   ", "| | .    ", "| |    ", "|.|     " };
-           
+            string[] anikaqqe = new string[] { " .................", ". ................", ".. ...............", "... ..............", ".... .............", "..... ............", "..................", "...... ...........", "....... ..........", "........ .........", "......... ........", ".......... .......", "........... ......", "............ .....", "............. ....", ".............. ...", "................ .", "................. ", };
+            string[] ani = new string[] {"    A","   A ","  A  "," A   ","A   A","A  A ","A A  ","AA   "};
             while (true)
             {
                 int i = 0;
                 for (i = 0; i < ani.Length; i++)
                 {
-                    Thread.Sleep(1000);
-                    Dispatcher.Invoke(()=> animeerzion.Text = ani[i]);
+                    Thread.Sleep(500);
+                    Dispatcher.Invoke(() => animeerzion.Text = ani[i]);
+                    if (i%2==0)
+                    {
+                        Dispatcher.Invoke(() => animeerzion.Background = Brushes.Green);
+                       Dispatcher.Invoke(()=>animeerzion.Text = "AAAAAAA");
+                        Dispatcher.Invoke(() => animeerzion.Background = System.Windows.SystemColors.MenuHighlightBrush);
+                    }
+                    Dispatcher.Invoke(() => animeerzion.Background = Brushes.WhiteSmoke);
                 }
-
-            }
+            }   
         }
         public async void taskmethode()
         {
@@ -79,12 +90,12 @@ namespace Rechner01
         {
             Numbs hmmm = new Numbs();
             InitializeComponent();
-            StaticMainWindow = this;
+            StaticMainWindow = this;//// Oo  
             textbox1.IsReadOnly = true;
             taskmethode();
 
-           
 
+            animeerzion.Background = Brushes.Green;
         }//endemain
 
 
@@ -115,7 +126,6 @@ namespace Rechner01
 
                     textbox1.Text = hmmm.Zahl2.ToString();
                 }
-           
             }
             else
             {
