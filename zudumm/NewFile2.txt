@@ -1,0 +1,45 @@
+/*Schreiben Sie folgendes C# WPF Programm
+ * Im Fenster ein Button mit der Aufschrift "Lade Websites" und einem Click Event
+ * Darunter ein TextBlock, der durch das Programm beschrieben werden kann
+ * Durch Klick auf den Button soll ein String-Array mit Website URLs angelgt werden
+ *  string[] sites = new string[]
+    {
+        "https://www.google.de",
+        "https://www.microsoft.com",
+        "https://codeproject.com",
+        "https://stackoverflow.com",
+        "https://www.youtube.com/",
+        "http://itsupport.wbstraining.de/tnlogin/"
+    };
+ * Dann soll dort in einer Schleife eine Methode aufgerufen werden, 
+ * die jede Website herunterlädt und in einem String speichert
+ * Der Zugriff auf die Website kann über die Klasse WebClient erfolgen.
+ * Das Herunterladen soll asynchron erfolgen.
+ * In dem Textblock soll die URL und die Anzahl der Zeichen der Website ausgegeben werden
+ */
+
+
+
+----------------------------------------------------------------------------------------------------------
+
+Sie arbeiten in der IT Abteilung eines Unternehmens, das Altgold und andere Edelmetalle einkauft.
+Ihr Team im Callcenter ruft bei potentiellen Verkäufern an und unterbreitet ihnen ein Angebot.
+Wird das Angebot des Ankaufs angenommen, fährt ein Außendienstmitarbeiter zum Verkäufer, um vor Ort die Edelmetalle mit einem Sprektrometer zu messen. 
+Gemessen werden die Anteile an Gold, Silber, Platin und Palladium pro Gramm Material.
+Die Ergebnisse der Messung und das Gewicht des Gesamtmaterials werden in ein Programm eingetragen und als Ergebnis erhält der Außendienstmitarbeiter den Ankaufspreis.
+Das Geld wird dem Verkäufer vom Außendienstmitarbeiter in Bar ausgezahlt und anschließend zur Firmenzentrale zur weiteren Verarbeitung geschickt.
+
+a) Erstellen Sie im ersten Schritt zu diesem Vorgang ein UML Aktivitätsdiagram. 
+b) Erstellen Sie in C# als WPF Anwendung das Programm zur Berechnung des Ankaufspreises.
+	In der Oberfläche soll der Außendienstmitarbeiter das Edelmetall auswählen und in
+	Prozent den Anteil des Metalls an der Gesamtmasse eingeben können.
+	Zum Beispiel könnte die Legierung eines Schmuckgegenstandes 
+	10% Gold, 83% Silber, 5% Platin und 2% Palladium auf 10 Gramm Gesamtmaterial enthalten.
+	Der Wert in Euro pro Gramm Edelmetall wird aus einer Datenbank entnommen, 
+	die einmal täglich aktualisiert wird (Das Implementieren der Aktualisierung können Sie auslassen)
+	Sind alle Werte vollständig eingegeben, wird nach Klick auf einen Button der Ankaufspreis inklusive 20% Gewinn angezeigt.
+	Nutzen Sie folgende Werte:
+	Gold: 24€/g
+	Silber: 0,33€/g
+	Platin: 16,60€/g
+	Palladium: 28,50€/g
