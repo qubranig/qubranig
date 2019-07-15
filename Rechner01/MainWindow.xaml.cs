@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input; //für die tasten Funktionalität
@@ -37,7 +35,6 @@ namespace Rechner01
         public double Zahl2 { get; set; }
         public List<double> listezahlen { get; set; }
         public double Ergebniss { get; set; }
-        public int Dezimalstelle { get; set; } //das nix gut
         public string Operant { get; set; }
         public List<string>listeoperanten { get; set; }
 
@@ -47,11 +44,14 @@ namespace Rechner01
     public partial class MainWindow : Window
     {//globale variablen
         List<Numbs> speicher = new List<Numbs>();
+
         bool operant = false;
         bool BoolDezimalStelle = false;
+
         double zahl1 = 0;//nur platzhalter zum testen 
         double zahl2 = 0;
-        Numbs hmmm = new Numbs();
+
+        Numbs hmmm = new Numbs();//platzhalterobjekt ->todo liste
         int dezimalstelle=0;
         public static MainWindow StaticMainWindow;
 
@@ -69,7 +69,7 @@ namespace Rechner01
                     if (i%2==0)
                     {
                         Dispatcher.Invoke(() => animeerzion.Background = Brushes.Green);
-                       Dispatcher.Invoke(()=>animeerzion.Text = "AAAAAAA");
+                        //Dispatcher.Invoke(()=>animeerzion.Text = "AAAAAAA");
                         Dispatcher.Invoke(() => animeerzion.Background = System.Windows.SystemColors.MenuHighlightBrush);
                     }
                     Dispatcher.Invoke(() => animeerzion.Background = Brushes.WhiteSmoke);
@@ -113,7 +113,7 @@ namespace Rechner01
                 if (!operant)
                 {
                         Zwsp = (Convert.ToInt32((sender as System.Windows.Controls.Button).Content));
-                    dezimalstelle++;
+                    dezimalstelle++;//todo unschön
                     hmmm.Zahl1 =hmmm.Zahl1+ Zwsp/(Math.Pow(10,dezimalstelle));
 
                     textbox1.Text = hmmm.Zahl1.ToString();
@@ -375,6 +375,31 @@ namespace Rechner01
                 string stringspeicher = hmmm.Zahl1 + "\n" + hmmm.Zahl2 + "\n" + hmmm.Ergebniss;
                 textboxspeicher.Text = stringspeicher;
             }
+        }
+
+        private void Back_Click(object sender, RoutedEventArgs e)
+        {
+            Random r= new Random();
+            //switch (randy.Next(1, 4))
+            //{
+            //    case 1:
+            //        textboxspeicher.BorderBrush = Brushes.Aquamarine;
+            //        textboxspeicher.Background = Brushes.Brown;
+            //        break;
+            //    case 2:
+            //        textboxspeicher.BorderBrush = Brushes.Purple;
+            //        textboxspeicher.Background = Brushes.Green;
+            //        break;
+            //    case 3:
+            //        textboxspeicher.BorderBrush = Brushes.Black;
+            //        textboxspeicher.Background = Brushes.White;
+            //        break;
+
+            //}
+            Brush brush = new SolidColorBrush(Color.FromRgb((byte)r.Next(1, 255),
+              (byte)r.Next(1, 255), (byte)r.Next(1, 233)));
+            textboxspeicher.BorderBrush = brush;
+
         }
 
         //https://www.youtube.com/watch?v=2moh18sh5p4   Async / Await
