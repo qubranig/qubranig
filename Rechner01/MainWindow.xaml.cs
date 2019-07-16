@@ -399,6 +399,12 @@ namespace Rechner01
             Brush brush = new SolidColorBrush(Color.FromRgb((byte)r.Next(1, 255),
               (byte)r.Next(1, 255), (byte)r.Next(1, 233)));
             textboxspeicher.BorderBrush = brush;
+            if (hmmm.Zahl1 == 123)
+            {
+                Brush brush2 = new SolidColorBrush(Color.FromRgb((byte)r.Next(1, 255),
+             (byte)r.Next(1, 255), (byte)r.Next(1, 233)));
+                Background = brush2;
+            }
 
         }
 
