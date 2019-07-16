@@ -73,6 +73,7 @@ namespace Rechner01
                         Dispatcher.Invoke(() => animeerzion.Background = System.Windows.SystemColors.MenuHighlightBrush);
                     }
                     Dispatcher.Invoke(() => animeerzion.Background = Brushes.WhiteSmoke);
+                    
                 }
             }   
         }
@@ -405,6 +406,11 @@ namespace Rechner01
              (byte)r.Next(1, 255), (byte)r.Next(1, 233)));
                 Background = brush2;
             }
+
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
 
         }
 
