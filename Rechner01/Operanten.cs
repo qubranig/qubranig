@@ -49,6 +49,16 @@ namespace Rechner01
                 numbs.Zahl2 = 0;
             }
         }
+        public static void Modulo(Numbs numbs)
+        {
+            if (numbs.Zahl2 != 0)
+            {
+                numbs.Ergebniss = numbs.Zahl1 % numbs.Zahl2;
+                numbs.Zahl1 = numbs.Zahl1 % numbs.Zahl2;
+                numbs.Zahl2 = 0;
+            }
+        }
+
 
     }
 

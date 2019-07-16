@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Rechner01"
         mc:Ignorable="d"
-        Title="MainWindow" Height="667.608" Width="938.402" Background="Black" KeyDown="Window_KeyDown" >
+        Title="Taschenrechner" Height="667.608" Width="938.402" Background="Black" KeyDown="Window_KeyDown" >
     <Grid Margin="0,170,218,0">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="120*" />
@@ -23,9 +23,9 @@
             <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <Button x:Name="delete"  Background="Black" Foreground="White" Content="ce" Grid.Column="0" Grid.Row="0" FontSize="50" Click="Ce_Click_1" IsTabStop="False" />
-        <Button Content="c" Background="Black" Foreground="White" Name="c" FontSize="50" Grid.Column="1" Grid.Row="0" Click="C_Click" IsTabStop="False"/>
-        <Button Foreground="White" Name="back" FontSize="50" Grid.Column="2" Grid.Row="0" Click="Back_Click">
+        <Button x:Name="delete"  Background="Black" Foreground="White" Content="ce" Grid.Column="1" Grid.Row="0" FontSize="50" Click="Ce_Click_1" IsTabStop="False" />
+        <Button Content="c" Background="Black" Foreground="White" Name="c" FontSize="50" Grid.Column="2" Grid.Row="0" Click="C_Click" IsTabStop="False"/>
+        <Button Foreground="White" Name="back" FontSize="50" Grid.Column="0" Grid.Row="0" Click="Back_Click">
             <Button.Background>
                 <ImageBrush ImageSource="human_skull.ico"/>
             </Button.Background>
@@ -47,12 +47,25 @@
         <Button Content="0" Background="Black" Foreground="White" Name="null" Grid.Column="1" Grid.Row="4" FontSize="50"  Click="zahl_click"/>
         <Button Content="," Background="Black" Foreground="White" Name="komma" Grid.Column="2" Grid.Row="4" FontSize="50" Click="Komma_Click"/>
         <Button Content="=" Background="Black" Foreground="White" Name="gleich"  Grid.Column="3" Grid.Row="4" FontSize="50" Click="Gleich_Click" />
+        <Button Content="x²" Background="Black" Foreground="White" Name="button_quadrat"  Grid.Column="4" Grid.Row="0" FontSize="50" Click="Button_quadrat_Click"/>
+        <Button Content="√" Background="Black" Foreground="White" Name="button_Wurzel"  Grid.Column="4" Grid.Row="1" FontSize="50" Click="Button_Wurzel_Click"/>
+        <Button Content="%" Background="Black" Foreground="White" Name="button_Prozent"  Grid.Column="4" Grid.Row="2" FontSize="50" Click="Button_Prozent_Click"/>
+        <Button Content="sin" Background="Black" Foreground="White" Name="button_sinus"  Grid.Column="4" Grid.Row="2" FontSize="50" Click="Button_sinus_Click"/>
+        <Button Content="cos" Background="Black" Foreground="White" Name="button_cosinus"  Grid.Column="4" Grid.Row="3" FontSize="50" Click="Button_cosinus_Click"/>
+        <Button Content="tan" Background="Black" Foreground="White" Name="button_tangenz"  Grid.Column="4" Grid.Row="4" FontSize="50" Click="Button_tangenz_Click"/>
+        <Button Content="xⁿ" Background="Black" Foreground="White" Name="button_x_hoch_n"  Grid.Column="5" Grid.Row="0" FontSize="50" Click="Button_x_hoch_n_Click"/>
+        <Button Content="∛" Background="Black" Foreground="White" Name="button_DritteWurzel"  Grid.Column="5" Grid.Row="1" FontSize="50" Click="Button_DritteWurzel_Click"/>
+        <Button Content="mod" Background="Black" Foreground="White" Name="button_modulo"  Grid.Column="5" Grid.Row="2" FontSize="50" Margin="10,8" Width="Auto" Click="op_click"/>
+        <Button Content="π" Background="Black" Foreground="White" Name="button_Pie"  Grid.Column="5" Grid.Row="3" FontSize="50" Click="Button_Pie_Click"/>
+        <Button Content="↩" Background="Black" Foreground="White" Name="button_"  Grid.Column="5" Grid.Row="4" FontSize="50" Click="Button__Click"/>
 
 
 
-        <TextBox Name="textbox1"  Foreground="Purple" Background="LightYellow" FontSize="50" HorizontalAlignment="Left" Height="106" Margin="24,-156,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="521" Grid.ColumnSpan="4"/>
+
+
+        <TextBox Name="textbox1"  Foreground="Purple" Background="LightYellow" FontSize="50" HorizontalAlignment="Left" Height="106" Margin="24,-156,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="678" Grid.ColumnSpan="6"/>
         <TextBox BorderThickness="20" Name="textboxspeicher" Background="LightYellow"  HorizontalAlignment="Right" Height="442" Margin="0,8,-208,17" TextWrapping="Wrap" FontSize="30" VerticalAlignment="Center" Width="171" Grid.Column="5" Grid.RowSpan="5"/>
-        <TextBox Name="animeerzion" Background="Firebrick" FontSize="50"  Grid.Column="6" HorizontalAlignment="Left" Height="70" Margin="37,-156,-144,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="108" RenderTransformOrigin="-0.117,-0.87"/>
+        <TextBox Name="animeerzion" Background="Firebrick" FontSize="50"  Grid.Column="5" HorizontalAlignment="Left" Height="70" Margin="220,-156,-208,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="108" RenderTransformOrigin="-0.117,-0.87"/>
 
     </Grid>
 

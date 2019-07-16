@@ -1,4 +1,5 @@
 ﻿using System;
+using static System.Math; //funktionalität der quadrate, wurzeln usw.
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Windows;
@@ -6,7 +7,6 @@ using System.Windows.Input; //für die tasten Funktionalität
 using System.Timers;
 using System.Threading;
 using System.Windows.Media;
-
 /// <summary>
 /// to do :
 /// -liste von zahlen und opereratoren -> brauchen wir andere andere methden (listezahlen[x] , operator[i] ... 
@@ -80,8 +80,6 @@ namespace Rechner01
             InitializeComponent();
             StaticMainWindow = this;//// Oo  
             textbox1.IsReadOnly = true;
-            animeerzion.IsReadOnly = true;
-            textboxspeicher.IsReadOnly = true;
             taskmethode();
             
             animeerzion.Background = Brushes.Green;
@@ -145,19 +143,20 @@ namespace Rechner01
                 }
             }
             AktualisiereWhiteBox();
+            gleich.Focus(); //lenke den fokus woanders hin um fehler mit enter zu vermeiden
             ergebnisBerechnet = false;
         }
 
         //event für die eingabe eines operators
         public void op_click(object sender, RoutedEventArgs e) //operanten taste
         {
-            
             dezimalstelle = 0;
             BoolDezimalStelle = false;
             operant = true;
             hmmm.Operant = Convert.ToString((sender as System.Windows.Controls.Button).Content);
             ergebnis();
             AktualisiereWhiteBox();
+            gleich.Focus(); //lenke den fokus woanders hin um fehler mit enter zu vermeiden
         }
         //event für ergebnis (enter taste)
         private void Gleich_Click(object sender, RoutedEventArgs e)
@@ -194,6 +193,13 @@ namespace Rechner01
                     textbox1.Clear();
                     textbox1.Text = hmmm.Zahl1.ToString();
                     break;
+                case "%":
+                    Operanten.Modulo(hmmm);
+                    textbox1.Clear();
+                    textbox1.Text = hmmm.Zahl1.ToString();
+                    break;
+
+
             }
             AktualisiereWhiteBox();
         }
@@ -211,23 +217,17 @@ namespace Rechner01
             }
             AktualisiereWhiteBox();
             textbox1.Text = "0";
-            BoolDezimalStelle = false;
-            dezimalstelle = 0;
             gleich.Focus(); //lenke den fokus woanders hin um fehler mit enter zu vermeiden
-
         }
         private void C_Click(object sender, RoutedEventArgs e) // C - alles (auch objekte) löschen!
-        { //LÖSCHE ALLES und stare wieder bei 0 mit zahl1 ... (funktioniert noch net, er startet bei zahl2)  ->operator bool auf false gesetzt check
+        { //LÖSCHE ALLES und stare wieder bei 0 mit zahl1 ... (funktioniert noch net, er startet bei zahl2)
             hmmm = null; //lösche objektreferenz
             textbox1.Clear();
             hmmm = new Numbs();
-            BoolDezimalStelle = false;
-            dezimalstelle = 0;
             textbox1.Clear();
             InitializeComponent();
             gleich.Focus(); //lenke den fokus woanders hin um fehler mit enter zu vermeiden
-            
-            operant = false;
+
             AktualisiereWhiteBox();
         }
 
@@ -240,6 +240,7 @@ namespace Rechner01
             textbox1.Text += "," ;//display
             }
             AktualisiereWhiteBox();
+            gleich.Focus(); //lenke den fokus woanders hin um fehler mit enter zu vermeiden
         }
         //event numpad support =)
         private void Window_KeyDown(object sender, System.Windows.Input.KeyEventArgs e) //funktionalität für das drücken einer taste
@@ -401,12 +402,143 @@ namespace Rechner01
             Brush brush = new SolidColorBrush(Color.FromRgb((byte)r.Next(1, 255),
               (byte)r.Next(1, 255), (byte)r.Next(1, 233)));
             textboxspeicher.BorderBrush = brush;
-            if (zahl1==123)
+
+        }
+
+        private void Button_quadrat_Click(object sender, RoutedEventArgs e)
+        {
+            if (hmmm.Zahl1 != 0 && hmmm.Zahl2 != 0) //dann wurde ja die 2. zahl zuletzt eingegeben
             {
-                Brush brush2 = new SolidColorBrush(Color.FromRgb((byte)r.Next(1, 255),
-                (byte)r.Next(1, 255), (byte)r.Next(1, 233)));
-                Background = brush2;
+                hmmm.Ergebniss = Math.Pow(hmmm.Zahl2, 2);
             }
+            else //dann war es die 1. zahl die zuletzt eingegeben wurde
+            {
+                hmmm.Ergebniss = Math.Pow(hmmm.Zahl1, 2);
+            }
+            AktualisiereWhiteBox();
+            textbox1.Text = hmmm.Ergebniss.ToString();
+            gleich.Focus(); //lenke den fokus woanders hin um fehler mit enter zu vermeiden
+        }
+
+        private void Button_Wurzel_Click(object sender, RoutedEventArgs e)
+        {
+            if (hmmm.Zahl1 != 0 && hmmm.Zahl2 != 0) //dann wurde ja die 2. zahl zuletzt eingegeben
+            {
+                hmmm.Ergebniss = Math.Sqrt(hmmm.Zahl2);
+            }
+            else //dann war es die 1. zahl die zuletzt eingegeben wurde
+            {
+                hmmm.Ergebniss = Math.Sqrt(hmmm.Zahl1);
+            }
+            AktualisiereWhiteBox();
+            textbox1.Text = hmmm.Ergebniss.ToString();
+            gleich.Focus(); //lenke den fokus woanders hin um fehler mit enter zu vermeiden
+        }
+
+        private void Button_Prozent_Click(object sender, RoutedEventArgs e)
+        {
+            gleich.Focus(); //lenke den fokus woanders hin um fehler mit enter zu vermeiden
+
+        }
+
+        private void Button_sinus_Click(object sender, RoutedEventArgs e)
+        {
+            if (hmmm.Zahl1 != 0 && hmmm.Zahl2 != 0) //dann wurde ja die 2. zahl zuletzt eingegeben
+            {
+                hmmm.Ergebniss = Math.Sin(hmmm.Zahl2);
+            }
+            else //dann war es die 1. zahl die zuletzt eingegeben wurde
+            {
+                hmmm.Ergebniss = Math.Sin(hmmm.Zahl1);
+            }
+            AktualisiereWhiteBox();
+            textbox1.Text = hmmm.Ergebniss.ToString();
+            gleich.Focus(); //lenke den fokus woanders hin um fehler mit enter zu vermeiden
+
+        }
+
+        private void Button_cosinus_Click(object sender, RoutedEventArgs e)
+        {
+            if (hmmm.Zahl1 != 0 && hmmm.Zahl2 != 0) //dann wurde ja die 2. zahl zuletzt eingegeben
+            {
+                hmmm.Ergebniss = Math.Cos(hmmm.Zahl2);
+            }
+            else //dann war es die 1. zahl die zuletzt eingegeben wurde
+            {
+                hmmm.Ergebniss = Math.Cos(hmmm.Zahl1);
+            }
+            AktualisiereWhiteBox();
+            textbox1.Text = hmmm.Ergebniss.ToString();
+            gleich.Focus(); //lenke den fokus woanders hin um fehler mit enter zu vermeiden
+        }
+
+        private void Button_tangenz_Click(object sender, RoutedEventArgs e)
+        {
+            if (hmmm.Zahl1 != 0 && hmmm.Zahl2 != 0) //dann wurde ja die 2. zahl zuletzt eingegeben
+            {
+                hmmm.Ergebniss = Math.Tan(hmmm.Zahl2);
+            }
+            else //dann war es die 1. zahl die zuletzt eingegeben wurde
+            {
+                hmmm.Ergebniss = Math.Tan(hmmm.Zahl1);
+            }
+            AktualisiereWhiteBox();
+            textbox1.Text = hmmm.Ergebniss.ToString();
+            gleich.Focus(); //lenke den fokus woanders hin um fehler mit enter zu vermeiden
+        }
+
+        private void Button_x_hoch_n_Click(object sender, RoutedEventArgs e) //Potenz
+        {
+            try
+            {
+                hmmm.Ergebniss = Math.Pow(hmmm.Zahl1, hmmm.Zahl2);
+                textbox1.Text = hmmm.Ergebniss.ToString();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Fehler", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            gleich.Focus(); //lenke den fokus woanders hin um fehler mit enter zu vermeiden
+
+        }
+
+        private void Button_DritteWurzel_Click(object sender, RoutedEventArgs e)
+        {
+            //Dritte Wurzel von x = x hoch 1 / 3, also:
+            //dritteWurzelVonX = Math.Pow(x, 1.0 / 3.0);
+            double n = 3.0;
+            if (hmmm.Zahl1 != 0 && hmmm.Zahl2 != 0) //dann wurde ja die 2. zahl zuletzt eingegeben
+            {
+                hmmm.Ergebniss = Math.Pow(hmmm.Zahl2, 1.0 / n);
+            }
+            else //dann war es die 1. zahl die zuletzt eingegeben wurde
+            {
+                hmmm.Ergebniss = Math.Pow(hmmm.Zahl1, 1.0 / n);
+            }
+            AktualisiereWhiteBox();
+            textbox1.Text = hmmm.Ergebniss.ToString();
+            gleich.Focus(); //lenke den fokus woanders hin um fehler mit enter zu vermeiden
+        }
+
+        private void Button_Pie_Click(object sender, RoutedEventArgs e)
+        { //https://matheguru.com/allgemein/die-kreiszahl-pi.html
+            if (hmmm.Zahl1 != 0 && hmmm.Zahl2 != 0) //dann wurde ja die 2. zahl zuletzt eingegeben
+            {
+                hmmm.Zahl2 = 3.14159265301;
+                textbox1.Text = hmmm.Zahl2.ToString();
+            }
+            else //dann war es die 1. zahl die zuletzt eingegeben wurde
+            {
+                hmmm.Zahl1 = 3.14159265301;
+                textbox1.Text = hmmm.Zahl1.ToString();
+            }
+            AktualisiereWhiteBox();
+            gleich.Focus(); //lenke den fokus woanders hin um fehler mit enter zu vermeiden
+        }
+
+        private void Button_Backspace_Click(object sender, RoutedEventArgs e)
+        {
+            gleich.Focus(); //lenke den fokus woanders hin um fehler mit enter zu vermeiden
 
         }
 
