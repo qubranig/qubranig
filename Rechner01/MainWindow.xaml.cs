@@ -80,6 +80,8 @@ namespace Rechner01
             InitializeComponent();
             StaticMainWindow = this;//// Oo  
             textbox1.IsReadOnly = true;
+            animeerzion.IsReadOnly = true;
+            textboxspeicher.IsReadOnly = true;
             taskmethode();
             
             animeerzion.Background = Brushes.Green;
