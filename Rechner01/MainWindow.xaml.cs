@@ -149,6 +149,7 @@ namespace Rechner01
         //event für die eingabe eines operators
         public void op_click(object sender, RoutedEventArgs e) //operanten taste
         {
+            
             dezimalstelle = 0;
             BoolDezimalStelle = false;
             operant = true;
@@ -208,6 +209,7 @@ namespace Rechner01
             }
             AktualisiereWhiteBox();
             textbox1.Text = "0";
+            BoolDezimalStelle = false;
             dezimalstelle = 0;
             gleich.Focus(); //lenke den fokus woanders hin um fehler mit enter zu vermeiden
 
@@ -217,6 +219,7 @@ namespace Rechner01
             hmmm = null; //lösche objektreferenz
             textbox1.Clear();
             hmmm = new Numbs();
+            BoolDezimalStelle = false;
             dezimalstelle = 0;
             textbox1.Clear();
             InitializeComponent();
