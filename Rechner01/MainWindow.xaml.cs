@@ -208,17 +208,20 @@ namespace Rechner01
             }
             AktualisiereWhiteBox();
             textbox1.Text = "0";
+            dezimalstelle = 0;
             gleich.Focus(); //lenke den fokus woanders hin um fehler mit enter zu vermeiden
 
         }
         private void C_Click(object sender, RoutedEventArgs e) // C - alles (auch objekte) löschen!
-        { //LÖSCHE ALLES und stare wieder bei 0 mit zahl1 ... (funktioniert noch net, er startet bei zahl2)  ->operator bool auf false gesetzt
+        { //LÖSCHE ALLES und stare wieder bei 0 mit zahl1 ... (funktioniert noch net, er startet bei zahl2)  ->operator bool auf false gesetzt check
             hmmm = null; //lösche objektreferenz
             textbox1.Clear();
             hmmm = new Numbs();
+            dezimalstelle = 0;
             textbox1.Clear();
             InitializeComponent();
             gleich.Focus(); //lenke den fokus woanders hin um fehler mit enter zu vermeiden
+            
             operant = false;
             AktualisiereWhiteBox();
         }
