@@ -212,14 +212,14 @@ namespace Rechner01
 
         }
         private void C_Click(object sender, RoutedEventArgs e) // C - alles (auch objekte) löschen!
-        { //LÖSCHE ALLES und stare wieder bei 0 mit zahl1 ... (funktioniert noch net, er startet bei zahl2)
+        { //LÖSCHE ALLES und stare wieder bei 0 mit zahl1 ... (funktioniert noch net, er startet bei zahl2)  ->operator bool auf false gesetzt
             hmmm = null; //lösche objektreferenz
             textbox1.Clear();
             hmmm = new Numbs();
             textbox1.Clear();
             InitializeComponent();
             gleich.Focus(); //lenke den fokus woanders hin um fehler mit enter zu vermeiden
-
+            operant = false;
             AktualisiereWhiteBox();
         }
 
@@ -393,6 +393,12 @@ namespace Rechner01
             Brush brush = new SolidColorBrush(Color.FromRgb((byte)r.Next(1, 255),
               (byte)r.Next(1, 255), (byte)r.Next(1, 233)));
             textboxspeicher.BorderBrush = brush;
+            if (zahl1==123)
+            {
+                Brush brush2 = new SolidColorBrush(Color.FromRgb((byte)r.Next(1, 255),
+                (byte)r.Next(1, 255), (byte)r.Next(1, 233)));
+                Background = brush2;
+            }
 
         }
 
