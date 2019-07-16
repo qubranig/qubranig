@@ -536,7 +536,7 @@ namespace Rechner01
             gleich.Focus(); //lenke den fokus woanders hin um fehler mit enter zu vermeiden
         }
 
-        private void Button_Backspace_Click(object sender, RoutedEventArgs e)
+        private void Button__Click(object sender, RoutedEventArgs e) //Backspace
         {
             gleich.Focus(); //lenke den fokus woanders hin um fehler mit enter zu vermeiden
 
