@@ -15,17 +15,11 @@ using System.Windows.Media;
 ///
 /// XML tasten foreground
 /// 
-/// 
-/// -
-/// 
 /// mögliche features: 
 /// ->webbrowser (vieleicht finden wir einen taschenrechner online dem wir die zaheln und operatoren übergebn könenn als gegen check )
 /// -die fertige rechungen auslagern in eine excel datei?
 /// 
 /// </summary>
-
-
-
 
 namespace Rechner01
 {
@@ -37,12 +31,11 @@ namespace Rechner01
         public double Ergebniss { get; set; }
         public string Operant { get; set; }
         public List<string>listeoperanten { get; set; }
-
-     }
-
-    
+     }    
     public partial class MainWindow : Window
     {//globale variablen
+        bool ergebnisBerechnet = false;
+
         List<Numbs> speicher = new List<Numbs>();
 
         bool operant = false;
@@ -73,7 +66,6 @@ namespace Rechner01
                         Dispatcher.Invoke(() => animeerzion.Background = System.Windows.SystemColors.MenuHighlightBrush);
                     }
                     Dispatcher.Invoke(() => animeerzion.Background = Brushes.WhiteSmoke);
-                    
                 }
             }   
         }
@@ -82,29 +74,17 @@ namespace Rechner01
             await Task.Run(Aniläuftzumbus);
         }
 
-
-        //hier steht nix 
-
-
-
         public MainWindow()
         {
-            Numbs hmmm = new Numbs();
+            Numbs hmmm = new Numbs(); //objekt von taschenrechner erzeugen
             InitializeComponent();
             StaticMainWindow = this;//// Oo  
             textbox1.IsReadOnly = true;
             taskmethode();
-
-
+            
             animeerzion.Background = Brushes.Green;
         }//endemain
 
-
-
-        //und hier steht auch nix 
-
-
-       
         //event für die Zahleneingabe
         public void zahl_click(object sender, RoutedEventArgs e)//check:)
         { 
@@ -163,8 +143,7 @@ namespace Rechner01
                 }
             }
             AktualisiereWhiteBox();
-            string stringspeicher = hmmm.Zahl1 + "\n" + hmmm.Zahl2 + "\n" + hmmm.Ergebniss;
-            textboxspeicher.Text = stringspeicher;
+            ergebnisBerechnet = false;
         }
 
         //event für die eingabe eines operators
@@ -174,10 +153,7 @@ namespace Rechner01
             BoolDezimalStelle = false;
             operant = true;
             hmmm.Operant = Convert.ToString((sender as System.Windows.Controls.Button).Content);
-
             ergebnis();
-            string stringspeicher = hmmm.Zahl1 + "\n" + hmmm.Zahl2 + "\n" + hmmm.Ergebniss;
-            textboxspeicher.Text = stringspeicher;
             AktualisiereWhiteBox();
         }
         //event für ergebnis (enter taste)
@@ -187,6 +163,7 @@ namespace Rechner01
             dezimalstelle = 0;
             operant = false;
             AktualisiereWhiteBox();
+            ergebnisBerechnet = true;
         }
         //TODO
         //wie auslagern ?  Die textboxen !!!  
@@ -214,23 +191,38 @@ namespace Rechner01
                     textbox1.Clear();
                     textbox1.Text = hmmm.Zahl1.ToString();
                     break;
-
             }
-            string stringspeicher = hmmm.Zahl1 + "\n" + hmmm.Zahl2 + "\n" + hmmm.Ergebniss;
-            textboxspeicher.Text = stringspeicher;
             AktualisiereWhiteBox();
         }
         //event ce
         private void Ce_Click_1(object sender, RoutedEventArgs e)
         {
+            //CE löscht nur die zuletzt eingegebene referenz
+            if (hmmm.Zahl1 != 0 && hmmm.Zahl2 != 0) //dann wurde ja die 2. zahl zuletzt eingegeben
+            { 
+                hmmm.Zahl2 = 0;
+            }
+            else //dann war es die 1. zahl die zuletzt eingegeben wurde
+            {
+                hmmm.Zahl1 = 0;
+            }
+            AktualisiereWhiteBox();
+            textbox1.Text = "0";
+            gleich.Focus(); //lenke den fokus woanders hin um fehler mit enter zu vermeiden
+
+        }
+        private void C_Click(object sender, RoutedEventArgs e) // C - alles (auch objekte) löschen!
+        { //LÖSCHE ALLES und stare wieder bei 0 mit zahl1 ... (funktioniert noch net, er startet bei zahl2)
+            hmmm = null; //lösche objektreferenz
             textbox1.Clear();
-            hmmm.Zahl1 = 0;
-            hmmm.Zahl2 = 0;
-            dezimalstelle = 0;
-            hmmm.Ergebniss = 0;
-            hmmm.Operant = "";
+            hmmm = new Numbs();
+            textbox1.Clear();
+            InitializeComponent();
+            gleich.Focus(); //lenke den fokus woanders hin um fehler mit enter zu vermeiden
+
             AktualisiereWhiteBox();
         }
+
         //event komma
         private void Komma_Click(object sender, RoutedEventArgs e)
         {
@@ -248,7 +240,8 @@ namespace Rechner01
             #region //nummern(pad) tasten
             if (e.Key == Key.NumPad0) // wenn 0 , dann führe aus
             {
-                sender = /*button: */@null;
+                sender = /*button: */
+            @null;
                 zahl_click(sender, e);
             }
             if (e.Key == Key.NumPad1) // wenn 1, dann führe aus
@@ -319,7 +312,7 @@ namespace Rechner01
                 sender = /*button: */multiplikation;
                 op_click(sender, e);
             }
-            if (e.Key == Key.Enter) // wenn Numpad ENTER, dann führe aus =
+            if (e.Key == Key.Return) // wenn Numpad ENTER, dann führe aus
             {
                 sender = /*button: */gleich;
                 Gleich_Click(sender, e);
@@ -350,32 +343,32 @@ namespace Rechner01
             AktualisiereWhiteBox();
         }
         //event c
-        private void C_Click(object sender, RoutedEventArgs e) // C - alles (auch objekte) löschen!
-        {
-            BoolDezimalStelle = false; //urzustand
-            hmmm = new Numbs();
-            textbox1.Clear();
-            AktualisiereWhiteBox();
-        }
         //todo
         //plusminus
         private void Vorzeichen_Click(object sender, RoutedEventArgs e)
         {
-            
-        }
-        //methode zur fensteraktualisierung
-        private void AktualisiereWhiteBox()
-        {
-            string stringspeicher = hmmm.Zahl1 + "\n" + hmmm.Zahl2 + "\n" + hmmm.Ergebniss;
-            textboxspeicher.Text = stringspeicher;
-        }
-        private void AktualisiereWhiteBoxInSchleifeOMG()
-        {
-            while (true)
+            if (hmmm.Zahl1 != 0 && hmmm.Zahl2 != 0) //dann wurde ja die 2. zahl zuletzt eingegeben
             {
-                string stringspeicher = hmmm.Zahl1 + "\n" + hmmm.Zahl2 + "\n" + hmmm.Ergebniss;
-                textboxspeicher.Text = stringspeicher;
+                hmmm.Zahl2 *= -1;
+                textbox1.Text = hmmm.Zahl2.ToString();
+
             }
+            else //dann war es die 1. zahl die zuletzt eingegeben wurde
+            {
+                hmmm.Zahl1 *= -1;
+                textbox1.Text = hmmm.Zahl1.ToString();
+            }
+            AktualisiereWhiteBox();
+            gleich.Focus(); //lenke den fokus woanders hin um fehler mit enter zu vermeiden
+        }
+        private void AktualisiereWhiteBox()   //methode zur fensteraktualisierung für debug
+        {
+            string stringspeicher = "z1 " + hmmm.Zahl1 + " " + hmmm.Operant + "\n" + "z2 " + hmmm.Zahl2 + "\n";
+            if (ergebnisBerechnet) //nur wenn der wert true ist und das ergebnis  tatsächlich berechnet wurde
+            {
+                stringspeicher = "z1 " + hmmm.Zahl1 + "\n" + "z2 " + hmmm.Zahl2 + "\n" + "= " + hmmm.Ergebniss;
+            } // halt ohne operator
+            textboxspeicher.Text = stringspeicher;
         }
 
         private void Back_Click(object sender, RoutedEventArgs e)
@@ -400,17 +393,6 @@ namespace Rechner01
             Brush brush = new SolidColorBrush(Color.FromRgb((byte)r.Next(1, 255),
               (byte)r.Next(1, 255), (byte)r.Next(1, 233)));
             textboxspeicher.BorderBrush = brush;
-            if (hmmm.Zahl1 == 123)
-            {
-                Brush brush2 = new SolidColorBrush(Color.FromRgb((byte)r.Next(1, 255),
-             (byte)r.Next(1, 255), (byte)r.Next(1, 233)));
-                Background = brush2;
-            }
-
-        }
-
-        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
-        {
 
         }
 

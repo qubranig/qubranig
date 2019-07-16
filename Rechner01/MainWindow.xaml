@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Rechner01"
         mc:Ignorable="d"
-        Title="MainWindow" Height="672" Width="771.5" Background="Black" KeyDown="Window_KeyDown" Closing="Window_Closing">
+        Title="MainWindow" Height="672" Width="771.5" Background="Black" KeyDown="Window_KeyDown" >
     <Grid Margin="0,170,218,0">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="120*" />
@@ -22,11 +22,11 @@
             <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <Button x:Name="delete"  Background="Black" Foreground="White" Content="ce" Grid.Column="0" Grid.Row="0" FontSize="50" Click="Ce_Click_1" />
-        <Button Content="c" Background="Black" Foreground="White" Name="c" FontSize="50" Grid.Column="1" Grid.Row="0" Click="C_Click"/>
+        <Button x:Name="delete"  Background="Black" Foreground="White" Content="ce" Grid.Column="0" Grid.Row="0" FontSize="50" Click="Ce_Click_1" IsTabStop="False" />
+        <Button Content="c" Background="Black" Foreground="White" Name="c" FontSize="50" Grid.Column="1" Grid.Row="0" Click="C_Click" IsTabStop="False"/>
         <Button Foreground="White" Name="back" FontSize="50" Grid.Column="2" Grid.Row="0" Click="Back_Click">
-            <Button.Background>
-                <ImageBrush ImageSource="C:\Users\Administrator\Source\Repos\qubranig\qubranig\Rechner01\human_skull.ico"/>
+           <Button.Background>
+                <ImageBrush ImageSource="human_skull.ico"/>
             </Button.Background>
         </Button>
         <Button Content="/" Background="Black"  Foreground="White" Name="geteilt" FontSize="50" Grid.Column="3" Grid.Row="0" Click="op_click"/>
@@ -50,7 +50,7 @@
 
 
         <TextBox Name="textbox1"  Foreground="Purple" Background="LightYellow" FontSize="50" HorizontalAlignment="Left" Height="106" Margin="24,-156,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="521" Grid.ColumnSpan="4"/>
-        <TextBox BorderThickness="20" Name="textboxspeicher" Background="LightYellow" Grid.Column="4" HorizontalAlignment="Left" Height="442" Margin="37,8,-164,0" TextWrapping="Wrap" FontSize="30" Text="supbox" VerticalAlignment="Top" Width="128" Grid.RowSpan="5"/>
+        <TextBox BorderThickness="20" Name="textboxspeicher" Background="LightYellow" Grid.Column="4" HorizontalAlignment="Left" Height="442" Margin="37,8,-207,0" TextWrapping="Wrap" FontSize="30" VerticalAlignment="Top" Width="171" Grid.RowSpan="5"/>
         <TextBox Name="animeerzion" Background="Firebrick" FontSize="50"  Grid.Column="4" HorizontalAlignment="Left" Height="70" Margin="37,-156,-144,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="108" RenderTransformOrigin="-0.117,-0.87"/>
 
     </Grid>
