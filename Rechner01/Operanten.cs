@@ -24,42 +24,128 @@ namespace Rechner01
         }
         public static void Subtraktion(Numbs numbs)
         {
-            if (numbs.Zahl2 != 0)// hier stimmt was nicht ...   
-            {
+            
                 numbs.Ergebniss = numbs.Zahl1 - numbs.Zahl2;
                 numbs.Zahl1 = numbs.Zahl1 - numbs.Zahl2;
                 numbs.Zahl2 = 0;
-            }
+            
         }
         public static void Multiplikation(Numbs numbs)
         {
-            if (numbs.Zahl2 != 0)
-            {
+        
                 numbs.Ergebniss = numbs.Zahl1 * numbs.Zahl2;
                 numbs.Zahl1 = numbs.Zahl1 * numbs.Zahl2;
                 numbs.Zahl2 = 0;
-            }
+            
         }
         public static void Division(Numbs numbs)
         {
-            if (numbs.Zahl2 != 0)
-            {
+            
                 numbs.Ergebniss = numbs.Zahl1 / numbs.Zahl2;
                 numbs.Zahl1 = numbs.Zahl1 / numbs.Zahl2;
                 numbs.Zahl2 = 0;
-            }
+           
         }
         public static void Modulo(Numbs numbs)
         {
-            if (numbs.Zahl2 != 0)
-            {
                 numbs.Ergebniss = numbs.Zahl1 % numbs.Zahl2;
-                numbs.Zahl1 = numbs.Zahl1 % numbs.Zahl2;
-                numbs.Zahl2 = 0;
+
+        }
+        public static void Quadrat(Numbs numbs)
+        {
+            if (numbs.Zahl1 != 0 && numbs.Zahl2 != 0) //dann wurde ja die 2. zahl zuletzt eingegeben
+            {
+                numbs.Ergebniss = Math.Pow(numbs.Zahl2, 2);
+            }
+            else //dann war es die 1. zahl die zuletzt eingegeben wurde
+            {
+                numbs.Ergebniss = Math.Pow(numbs.Zahl1, 2);
             }
         }
+        public static void Wurzel(Numbs numbs)
+        {
+            if (numbs.Zahl1 != 0 && numbs.Zahl2 != 0) //dann wurde ja die 2. zahl zuletzt eingegeben
+            {
+                numbs.Ergebniss = Math.Sqrt(numbs.Zahl2);
+            }
+            else //dann war es die 1. zahl die zuletzt eingegeben wurde
+            {
+                numbs.Ergebniss = Math.Sqrt(numbs.Zahl1);
+            }
+            numbs.Zahl1 = numbs.Ergebniss;
+        }
+        public static void Sinus(Numbs numbs)
+        {
+            if (numbs.Zahl1 != 0 && numbs.Zahl2 != 0) //dann wurde ja die 2. zahl zuletzt eingegeben
+            {
+                numbs.Ergebniss = Math.Sin(numbs.Zahl2);
+            }
+            else //dann war es die 1. zahl die zuletzt eingegeben wurde
+            {
+                numbs.Ergebniss = Math.Sin(numbs.Zahl1);
+            }
+        }
+        public static void Cosinus(Numbs numbs)
+        {
+            if (numbs.Zahl1 != 0 && numbs.Zahl2 != 0) //dann wurde ja die 2. zahl zuletzt eingegeben
+            {
+                numbs.Ergebniss = Math.Cos(numbs.Zahl2);
+            }
+            else //dann war es die 1. zahl die zuletzt eingegeben wurde
+            {
+                numbs.Ergebniss = Math.Cos(numbs.Zahl1);
+            }
+        }
+        public static void Tangenz(Numbs numbs)
+        {
+            if (numbs.Zahl1 != 0 && numbs.Zahl2 != 0) //dann wurde ja die 2. zahl zuletzt eingegeben
+            {
+                numbs.Ergebniss = Math.Tan(numbs.Zahl2);
+            }
+            else //dann war es die 1. zahl die zuletzt eingegeben wurde
+            {
+                numbs.Ergebniss = Math.Tan(numbs.Zahl1);
+            }
+        }
+        public static void Xquadrat(Numbs numbs)
+        {
+            try
+            {
+                numbs.Ergebniss = Math.Pow(numbs.Zahl1, numbs.Zahl2);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Fehler", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+        public static void DritteWurzel(Numbs numbs)
+        {
+            double n = 3.0;
+            if (numbs.Zahl1 != 0 && numbs.Zahl2 != 0) //dann wurde ja die 2. zahl zuletzt eingegeben
+            {
+                numbs.Ergebniss = Math.Pow(numbs.Zahl2, 1.0 / n);
+            }
+            else //dann war es die 1. zahl die zuletzt eingegeben wurde
+            {
+                numbs.Ergebniss = Math.Pow(numbs.Zahl1, 1.0 / n);
+            }
+        }
+        public static void Pi(Numbs numbs)
+        {
+            { //https://matheguru.com/allgemein/die-kreiszahl-pi.html
+                if (numbs.Zahl1 != 0 && numbs.Zahl2 != 0) //dann wurde ja die 2. zahl zuletzt eingegeben
+                {
+                    numbs.Zahl2 = 3.14159265301;
+                    MainWindow.StaticMainWindow.textbox1.Text = numbs.Zahl2.ToString();
+                }
+                else //dann war es die 1. zahl die zuletzt eingegeben wurde
+                {
+                    numbs.Zahl1 = 3.14159265301;
+                    MainWindow.StaticMainWindow.textbox1.Text = numbs.Zahl1.ToString();
+                }
+            }
 
-
+        }
     }
 
 }
