@@ -35,9 +35,10 @@ namespace Rechner01
     public partial class MainWindow : Window
     {//globale variablen
         bool ergebnisBerechnet = false;
-
+         
         List<Numbs> speicher = new List<Numbs>();
-
+      static   CancellationTokenSource sourcecancel = new CancellationTokenSource();
+        static CancellationToken ct = sourcecancel.Token;
         bool operant = false;
         bool BoolDezimalStelle = false;
 
@@ -48,32 +49,61 @@ namespace Rechner01
         int dezimalstelle=0;
         public static MainWindow StaticMainWindow;
 
-        public void Aniläuftzumbus()
+        public async void Aniläuftzumbus(object token)
         {
             string[] anikaqqe = new string[] { " .................", ". ................", ".. ...............", "... ..............", ".... .............", "..... ............", "..................", "...... ...........", "....... ..........", "........ .........", "......... ........", ".......... .......", "........... ......", "............ .....", "............. ....", ".............. ...", "................ .", "................. ", };
             string[] ani = new string[] {"    A","   A ","  A  "," A   ","A   A","A  A ","A A  ","AA   "};
             while (true)
             {
-                int i = 0;
-                for (i = 0; i < ani.Length; i++)
+                try
                 {
-                    Thread.Sleep(500);
-                    Dispatcher.Invoke(() => animeerzion.Text = ani[i]);
-                    if (i%2==0)
+                    int i = 0;
+                    for (i = 0; i < ani.Length; i++)
                     {
-                        Dispatcher.Invoke(() => animeerzion.Background = Brushes.Green);
-                        //Dispatcher.Invoke(()=>animeerzion.Text = "AAAAAAA");
-                        Dispatcher.Invoke(() => animeerzion.Background = System.Windows.SystemColors.MenuHighlightBrush);
+                        await Task.Delay(333);
+                        if (((CancellationToken)token).IsCancellationRequested)
+                        {
+                            return;
+                        }
+                        else
+                        {
+                            Dispatcher.Invoke(() => animeerzion.Text = ani[i]);
+                            if (i % 2 == 0)
+                            {
+                                if (((CancellationToken)token).IsCancellationRequested)
+                                {
+                                    return;
+                                }
+                                Dispatcher.Invoke(() => animeerzion.Background = Brushes.Green);
+                            }
+                            else
+                            {
+                                if (((CancellationToken)token).IsCancellationRequested)
+                                {
+                                    return;
+                                }
+                                Dispatcher.Invoke(() => animeerzion.Background = Brushes.WhiteSmoke);
+                                //         Dispatcher.BeginInvoke()
+                            }
+
+                        }
+
                     }
-                    Dispatcher.Invoke(() => animeerzion.Background = Brushes.WhiteSmoke);
+                }
+                catch
+                {
+
                 }
             }   
         }
         public async void taskmethode()
-        {
-            await Task.Run(Aniläuftzumbus);
+        {  
+            await Task.Run(()=>Aniläuftzumbus(ct)); 
         }
-
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+           sourcecancel.Cancel();
+        }
 
 
         // hier steht nix
@@ -462,6 +492,13 @@ namespace Rechner01
             gleich.Focus(); //lenke den fokus woanders hin um fehler mit enter zu vermeiden
 
         }
+
+        private void Back_MouseEnter(object sender, MouseEventArgs e)
+        {
+
+        }
+
+
 
         //https://www.youtube.com/watch?v=2moh18sh5p4   Async / Await
     }//ENDE MainWindow : Window

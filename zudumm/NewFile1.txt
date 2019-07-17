@@ -1,0 +1,17 @@
+     <Style x:Key="hallo" TargetType="Button">
+            <Setter Property="Template">
+                <Style.Triggers>
+                    <Trigger Property="IsMouseOver" Value="True">
+                        <Setter Property="Background" >
+                            <Setter.Value>
+                                <ImageBrush ImageSource="C:\Users\Administrator\Source\Repos\qubranig\qubranig\Rechner01\human_skull.ico"/>
+                            </Setter.Value>
+                        </Setter>
+                    </Trigger>
+                </Style.Triggers>
+
+            </Setter>
+        </Style>
+
+
+		Style="{StaticResource hallo}"  aus der xml <button x>

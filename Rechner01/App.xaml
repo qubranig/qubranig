@@ -6,8 +6,9 @@
     <Application.Resources>
         <Style TargetType="Button">
             <Setter Property="Width" Value="90" />
-            <Setter Property="Background" Value="LightGreen" />
-            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="Background" Value="Black" />
+            <Setter Property="Foreground" Value="White" />
+
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Button}">
@@ -17,7 +18,7 @@
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
                                 <Setter Property="Background" Value="LightGreen" TargetName="Border" />
-                                <Setter Property="Foreground" Value="Black"/>
+                                <Setter Property="Foreground" Value="Black" />
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -25,5 +26,10 @@
             </Setter>
             <Setter Property="Margin" Value="8" />
         </Style>
+   
     </Application.Resources>
 </Application>
+    
+<!--http://mark-dot-net.blogspot.com/2007/07/creating-custom-wpf-button-template-in.html-->
+<!--https://stackoverflow.com/questions/3854317/how-to-remove-default-mouse-over-effect-on-wpf-buttons-->
+<!--https://blogs.msdn.microsoft.com/knom/2007/10/31/wpf-control-development-3-ways-to-build-an-imagebutton/-->
