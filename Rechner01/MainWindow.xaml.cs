@@ -457,10 +457,6 @@ namespace Rechner01
         }
 
 
-
-   
-
-
         private void Button__Click(object sender, RoutedEventArgs e) // 
         {
             gleich.Focus(); //lenke den fokus woanders hin um fehler mit enter zu vermeiden

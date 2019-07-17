@@ -53,22 +53,22 @@ namespace Rechner01
         }
         public static void Quadrat(Numbs numbs)
         {
-            if (numbs.Zahl1 != 0 && numbs.Zahl2 != 0) //dann wurde ja die 2. zahl zuletzt eingegeben
+            if (numbs.Zahl1 != 0 && numbs.Zahl2 != 0) 
             {
                 numbs.Ergebniss = Math.Pow(numbs.Zahl2, 2);
             }
-            else //dann war es die 1. zahl die zuletzt eingegeben wurde
+            else 
             {
                 numbs.Ergebniss = Math.Pow(numbs.Zahl1, 2);
             }
         }
         public static void Wurzel(Numbs numbs)
         {
-            if (numbs.Zahl1 != 0 && numbs.Zahl2 != 0) //dann wurde ja die 2. zahl zuletzt eingegeben
+            if (numbs.Zahl1 != 0 && numbs.Zahl2 != 0) 
             {
                 numbs.Ergebniss = Math.Sqrt(numbs.Zahl2);
             }
-            else //dann war es die 1. zahl die zuletzt eingegeben wurde
+            else
             {
                 numbs.Ergebniss = Math.Sqrt(numbs.Zahl1);
             }
@@ -76,33 +76,33 @@ namespace Rechner01
         }
         public static void Sinus(Numbs numbs)
         {
-            if (numbs.Zahl1 != 0 && numbs.Zahl2 != 0) //dann wurde ja die 2. zahl zuletzt eingegeben
+            if (numbs.Zahl1 != 0 && numbs.Zahl2 != 0) 
             {
                 numbs.Ergebniss = Math.Sin(numbs.Zahl2);
             }
-            else //dann war es die 1. zahl die zuletzt eingegeben wurde
+            else
             {
                 numbs.Ergebniss = Math.Sin(numbs.Zahl1);
             }
         }
         public static void Cosinus(Numbs numbs)
         {
-            if (numbs.Zahl1 != 0 && numbs.Zahl2 != 0) //dann wurde ja die 2. zahl zuletzt eingegeben
+            if (numbs.Zahl1 != 0 && numbs.Zahl2 != 0) 
             {
                 numbs.Ergebniss = Math.Cos(numbs.Zahl2);
             }
-            else //dann war es die 1. zahl die zuletzt eingegeben wurde
+            else 
             {
                 numbs.Ergebniss = Math.Cos(numbs.Zahl1);
             }
         }
         public static void Tangenz(Numbs numbs)
         {
-            if (numbs.Zahl1 != 0 && numbs.Zahl2 != 0) //dann wurde ja die 2. zahl zuletzt eingegeben
+            if (numbs.Zahl1 != 0 && numbs.Zahl2 != 0)
             {
                 numbs.Ergebniss = Math.Tan(numbs.Zahl2);
             }
-            else //dann war es die 1. zahl die zuletzt eingegeben wurde
+            else 
             {
                 numbs.Ergebniss = Math.Tan(numbs.Zahl1);
             }
@@ -121,11 +121,11 @@ namespace Rechner01
         public static void DritteWurzel(Numbs numbs)
         {
             double n = 3.0;
-            if (numbs.Zahl1 != 0 && numbs.Zahl2 != 0) //dann wurde ja die 2. zahl zuletzt eingegeben
+            if (numbs.Zahl1 != 0 && numbs.Zahl2 != 0) 
             {
                 numbs.Ergebniss = Math.Pow(numbs.Zahl2, 1.0 / n);
             }
-            else //dann war es die 1. zahl die zuletzt eingegeben wurde
+            else 
             {
                 numbs.Ergebniss = Math.Pow(numbs.Zahl1, 1.0 / n);
             }
