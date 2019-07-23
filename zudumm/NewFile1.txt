@@ -15,3 +15,8 @@
 
 
 		Style="{StaticResource hallo}"  aus der xml <button x>
+
+
+
+
+		Extras => Optionen => Projekte und Projektmappen => Allgemein => Ausgabefenster bei Buildbeginn anzeigen => Da den Haken raus
