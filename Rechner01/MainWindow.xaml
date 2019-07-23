@@ -25,8 +25,8 @@
         </Grid.RowDefinitions>
         <Button x:Name="delete"   Content="ce" Grid.Column="1" Grid.Row="0" FontSize="50" Click="Ce_Click_1" IsTabStop="False" />
         <Button Content="c"  Name="c" FontSize="50" Grid.Column="2" Grid.Row="0" Click="C_Click" IsTabStop="False"/>
-        <Button  Name="back" FontSize="50" Grid.Column="0" Grid.Row="0" Click="Back_Click"   >
-     
+        <Button Content="╚" Name="back" FontSize="50" Grid.Column="0" Grid.Row="0" Click="Back_Click"  >
+           
         </Button>
         <Button Content="/"  Name="geteilt" FontSize="50" Grid.Column="3" Grid.Row="0" Click="op_click"/>
         <Button Content="7"  Name="sieben" FontSize="50" Grid.Column="0" Grid.Row="1" Click="zahl_click"/>

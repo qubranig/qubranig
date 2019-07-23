@@ -32,6 +32,7 @@ namespace Rechner01
         public string Operant { get; set; }
         public List<string>listeoperanten { get; set; }
      }    
+
     public partial class MainWindow : Window
     {//globale variablen
         bool ergebnisBerechnet = false;
@@ -48,62 +49,6 @@ namespace Rechner01
         Numbs hmmm = new Numbs();//platzhalterobjekt ->todo liste
         int dezimalstelle=0;
         public static MainWindow StaticMainWindow;
-
-        public async void Aniläuftzumbus(object token)
-        {
-            string[] anikaqqe = new string[] { " .................", ". ................", ".. ...............", "... ..............", ".... .............", "..... ............", "..................", "...... ...........", "....... ..........", "........ .........", "......... ........", ".......... .......", "........... ......", "............ .....", "............. ....", ".............. ...", "................ .", "................. ", };
-            string[] ani = new string[] {"    A","   A ","  A  "," A   ","A   A","A  A ","A A  ","AA   "};
-            while (true)
-            {
-                try
-                {
-                    int i = 0;
-                    for (i = 0; i < ani.Length; i++)
-                    {
-                        await Task.Delay(333);
-                        if (((CancellationToken)token).IsCancellationRequested)
-                        {
-                            return;
-                        }
-                        else
-                        {
-                            Dispatcher.Invoke(() => animeerzion.Text = ani[i]);
-                            if (i % 2 == 0)
-                            {
-                                if (((CancellationToken)token).IsCancellationRequested)
-                                {
-                                    return;
-                                }
-                                Dispatcher.Invoke(() => animeerzion.Background = Brushes.Green);
-                            }
-                            else
-                            {
-                                if (((CancellationToken)token).IsCancellationRequested)
-                                {
-                                    return;
-                                }
-                                Dispatcher.Invoke(() => animeerzion.Background = Brushes.WhiteSmoke);
-                                //         Dispatcher.BeginInvoke()
-                            }
-
-                        }
-
-                    }
-                }
-                catch
-                {
-
-                }
-            }   
-        }
-        public async void taskmethode()
-        {  
-            await Task.Run(()=>Aniläuftzumbus(ct)); 
-        }
-        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-           sourcecancel.Cancel();
-        }
 
 
         // hier steht nix
@@ -470,7 +415,7 @@ namespace Rechner01
               (byte)r.Next(1, 255), (byte)r.Next(1, 233)));
 
             textboxspeicher.BorderBrush = brush;
-            if (hmmm.Zahl1 == 134679)
+            if (hmmm.Zahl1 == 1337)
             {
                 Brush brush2 = new SolidColorBrush(Color.FromRgb((byte)r.Next(1, 255),
              (byte)r.Next(1, 255), (byte)r.Next(1, 233)));
@@ -496,6 +441,65 @@ namespace Rechner01
         private void Back_MouseEnter(object sender, MouseEventArgs e)
         {
 
+        }
+        /// <summary>
+        /// extra thread
+        /// </summary>
+        /// <param name="token"></param>
+        public async void Aniläuftzumbus(object token)
+        {
+            string[] anikaqqe = new string[] { " .................", ". ................", ".. ...............", "... ..............", ".... .............", "..... ............", "..................", "...... ...........", "....... ..........", "........ .........", "......... ........", ".......... .......", "........... ......", "............ .....", "............. ....", ".............. ...", "................ .", "................. ", };
+            string[] ani = new string[] { "    A", "   A ", "  A  ", " A   ", "A   A", "A  A ", "A A  ", "AA   " };
+            while (true)
+            {
+                try
+                {
+                    int i = 0;
+                    for (i = 0; i < ani.Length; i++)
+                    {
+                        await Task.Delay(333);
+                        if (((CancellationToken)token).IsCancellationRequested)
+                        {
+                            return;
+                        }
+                        else
+                        {
+                            Dispatcher.Invoke(() => animeerzion.Text = ani[i]);
+                            if (i % 2 == 0)
+                            {
+                                if (((CancellationToken)token).IsCancellationRequested)
+                                {
+                                    return;
+                                }
+                                Dispatcher.Invoke(() => animeerzion.Background = Brushes.Green);
+                            }
+                            else
+                            {
+                                if (((CancellationToken)token).IsCancellationRequested)
+                                {
+                                    return;
+                                }
+                                Dispatcher.Invoke(() => animeerzion.Background = Brushes.WhiteSmoke);
+                                //         Dispatcher.BeginInvoke()
+                            }
+
+                        }
+
+                    }
+                }
+                catch
+                {
+
+                }
+            }
+        }
+        public async void taskmethode()
+        {
+            await Task.Run(() => Aniläuftzumbus(ct));
+        }
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            sourcecancel.Cancel();
         }
 
 
