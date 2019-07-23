@@ -43,3 +43,9 @@ b) Erstellen Sie in C# als WPF Anwendung das Programm zur Berechnung des Ankaufs
 	Silber: 0,33€/g
 	Platin: 16,60€/g
 	Palladium: 28,50€/g
+
+
+	-----------------------------------------------------
+
+	/* Erstellen Sie eine Umsetzung der Vigenere Cipher Verschlüsselungsmethode als C# Konsolenanwendung
+ */

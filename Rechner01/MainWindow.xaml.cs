@@ -12,9 +12,7 @@ using System.Windows.Media;
 /// -liste von zahlen und opereratoren -> brauchen wir andere andere methden (listezahlen[x] , operator[i] ... 
 /// -liste von objekten für speicher implementierung
 /// -methoden auslagern in eine statische klasse --- 
-///
-/// XML tasten foreground
-/// 
+// 
 /// mögliche features: 
 /// ->webbrowser (vieleicht finden wir einen taschenrechner online dem wir die zaheln und operatoren übergebn könenn als gegen check )
 /// -die fertige rechungen auslagern in eine excel datei?
