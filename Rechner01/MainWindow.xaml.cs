@@ -36,7 +36,7 @@ namespace Rechner01
         bool ergebnisBerechnet = false;
          
         List<Numbs> speicher = new List<Numbs>();
-      static   CancellationTokenSource sourcecancel = new CancellationTokenSource();
+        static   CancellationTokenSource sourcecancel = new CancellationTokenSource();
         static CancellationToken ct = sourcecancel.Token;
         bool operant = false;
         bool BoolDezimalStelle = false;
@@ -149,6 +149,7 @@ namespace Rechner01
             dezimalstelle = 0;
             operant = false;
             hmmm.Operant=  null;
+            BoolDezimalStelle = false;
             AktualisiereWhiteBox();
             ergebnisBerechnet = true;
         }
